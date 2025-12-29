@@ -178,7 +178,7 @@ if user_input:
 
     with st.chat_message("assistant", avatar="👩🏻‍💼"):
         if model:
-            with st.spinner("Synthesizing portfolio data for JD candidacy...")):
+            with st.spinner("Synthesizing portfolio data for JD candidacy..."):
                 try:
                     history = [{"role": "model" if m["role"] == "assistant" else "user", "parts": [m["content"]]} for m in st.session_state.messages[:-1]]
                     chat = model.start_chat(history=history)

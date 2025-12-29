@@ -14,30 +14,41 @@ st.set_page_config(
 
 # 终极 JavaScript：强制硬编码左上角图标并清理文字
 components.html(
-    """
+"""
     <script>
     const fixIcon = () => {
-        // 找到包含 "keyboard" 的所有元素
-        const allSpans = window.parent.document.querySelectorAll('span, i, div');
-        allSpans.forEach(el => {
-            if (el.innerText.includes('keyboard')) {
-                el.innerText = '«'; // 硬编码为你想要的箭头符号
-                el.style.fontFamily = 'serif';
-                el.style.fontSize = '20px';
-                el.style.color = '#31333F';
-                el.style.visibility = 'visible';
-            }
-        });
+        // 1. 精准定位：只找侧边栏折叠按钮
+        const sidebarButton = window.parent.document.querySelector('[data-testid="collapsedControl"]');
+        
+        if (sidebarButton) {
+            // 找到按钮内部的所有文本节点
+            const textNodes = sidebarButton.querySelectorAll('span, i');
+            textNodes.forEach(el => {
+                // 只有当文本包含 "keyboard" 时才修改，且直接替换 HTML 确保彻底
+                if (el.innerText.includes('keyboard')) {
+                    el.style.fontSize = '0px';
+                    el.style.color = 'transparent';
+                    el.style.display = 'none';
+                }
+            });
 
-        // 隐藏可能残留的 Header 文字
-        const header = window.parent.document.querySelector('header');
-        if (header) {
-            header.style.color = 'transparent';
+            // 2. 在按钮上注入硬编码的箭头 (如果还没注入的话)
+            if (!sidebarButton.querySelector('.custom-arrow')) {
+                const arrow = document.createElement('div');
+                arrow.className = 'custom-arrow';
+                arrow.innerText = '«'; 
+                arrow.style.fontFamily = 'serif';
+                arrow.style.fontSize = '22px';
+                arrow.style.color = '#31333F';
+                arrow.style.cursor = 'pointer';
+                arrow.style.lineHeight = '1';
+                sidebarButton.appendChild(arrow);
+            }
         }
     };
 
-    // 每一秒执行一次，确保 Streamlit 重新渲染后图标依然正确
-    setInterval(fixIcon, 100);
+    // 每 500 毫秒检查一次，平衡性能与响应速度
+    setInterval(fixIcon, 500);
     </script>
     """,
     height=0,

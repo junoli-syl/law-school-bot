@@ -68,14 +68,14 @@ st.markdown(
         box-shadow: none !important;
         padding: 0 !important;
         /* 增加顶部间距，让按钮和文字之间有呼吸感 */
-        margin-top: 1.2rem !important; 
+        margin-top: 1 rem !important; 
     }
 
     /* 专门处理文字样式 */
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.8rem !important;
+        font-size: 0.6rem !important;
         color: #666 !important;
-        line-height: 1.5 !important;
+        line-height: 1.2 !important;
     }
     </style>
     """, 

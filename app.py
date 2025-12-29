@@ -125,7 +125,6 @@ if "clicked_prompt" in st.session_state:
     del st.session_state.clicked_prompt
 else:
     user_input = st.chat_input("Type your question here...")
-
 if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
     with st.chat_message("user"):
@@ -134,13 +133,13 @@ if user_input:
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             try:
-                # 构造对话历史
-                chat_history = [
-                    {"role": m["role"], "parts": [m["content"]]} 
-                    for m in st.session_state.messages[:-1] # 不包含最新的一条
-                    if m["role"] != "system"
-                ]
+                # 构造对话历史 (关键修复：将 assistant 映射为 model)
+                chat_history = []
+                for m in st.session_state.messages[:-1]:
+                    role = "model" if m["role"] == "assistant" else "user"
+                    chat_history.append({"role": role, "parts": [m["content"]]})
                 
+                # 开启对话
                 chat = model.start_chat(history=chat_history)
                 response = chat.send_message(user_input)
                 

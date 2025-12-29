@@ -155,11 +155,11 @@ def handle_click(p): st.session_state.clicked_prompt = p
 st.markdown("---")
 c1, c2, c3 = st.columns(3)
 with c1:
-    st.button("Why Law?", on_click=handle_click, args=["Why do you want to go to law school given your tech career?"])
+    st.button("Why Law?", on_click=handle_click, args=["Why does Juno want to go to law school given her tech career?"])
 with c2:
-    st.button("Tech Impact", on_click=handle_click, args=["Tell me about your technical leadership and its impact."])
+    st.button("Tech Impact", on_click=handle_click, args=["Tell me about Juno's technical leadership and its impact."])
 with c3:
-    st.button("Academic", on_click=handle_click, args=["Tell me about your academic background at GWU."])
+    st.button("Academic", on_click=handle_click, args=["Tell me about Juno's academic background at GWU."])
 
 # 处理输入
 user_input = st.chat_input("Ask about Juno's background...")

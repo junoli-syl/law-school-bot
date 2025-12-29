@@ -124,9 +124,9 @@ with st.sidebar:
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
 
 # ==========================================
-# 5. 主界面渲染 (Header 使用 JunoLi_Headshot Square.jpeg)
+# 5. 主界面渲染 (Header 使用 juno_headshot.jpeg)
 # ==========================================
-header_photo = "JunoLi_Headshot Square.jpeg"
+header_photo = "juno_headshot.jpeg"
 header_col1, header_col2 = st.columns([1, 6])
 with header_col1:
     if os.path.exists(header_photo):

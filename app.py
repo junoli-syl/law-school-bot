@@ -1,9 +1,10 @@
 import streamlit as st
 import google.generativeai as genai
 import os
+import streamlit.components.v1 as components
 
 # ==========================================
-# 1. 页面配置
+# 1. 页面配置 & 视觉修复
 # ==========================================
 st.set_page_config(
     page_title="Juno Li's Law School AI Portfolio", 
@@ -11,40 +12,51 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# 终极 JavaScript：强制硬编码左上角图标并清理文字
+components.html(
+    """
+    <script>
+    const fixIcon = () => {
+        // 找到包含 "keyboard" 的所有元素
+        const allSpans = window.parent.document.querySelectorAll('span, i, div');
+        allSpans.forEach(el => {
+            if (el.innerText.includes('keyboard')) {
+                el.innerText = '«'; // 硬编码为你想要的箭头符号
+                el.style.fontFamily = 'serif';
+                el.style.fontSize = '20px';
+                el.style.color = '#31333F';
+                el.style.visibility = 'visible';
+            }
+        });
+
+        // 隐藏可能残留的 Header 文字
+        const header = window.parent.document.querySelector('header');
+        if (header) {
+            header.style.color = 'transparent';
+        }
+    };
+
+    // 每一秒执行一次，确保 Streamlit 重新渲染后图标依然正确
+    setInterval(fixIcon, 100);
+    </script>
+    """,
+    height=0,
+    width=0
+)
+
 st.markdown(
     """
     <style>
-    /* 1. 全局字体设定 */
+    /* 1. 全局字体强制执行 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 终极 Hardcode：将 keyboard 字样物理替换为箭头符号 */
-    /* 我们直接锁定包含图标的 span，强制清空其文本并注入硬编码符号 */
+    /* 2. 预设透明，防止闪烁 */
     [data-testid="collapsedControl"] span, 
     [data-testid="collapsedControl"] i {
-        font-size: 0px !important;
-        color: transparent !important;
-        position: relative;
+        color: transparent;
     }
 
-    [data-testid="collapsedControl"]::before {
-        /* 使用硬编码的衬线体箭头符号，完美契合 Times New Roman 风格 */
-        content: "«" !important; 
-        font-family: serif !important;
-        font-size: 22px !important;
-        color: #31333F !important;
-        display: block !important;
-        line-height: 1;
-        font-weight: bold;
-    }
-
-    /* 3. 彻底封死 Header 渲染路径 */
-    header[data-testid="stHeader"] {
-        background: transparent !important;
-        color: transparent !important;
-        pointer-events: none !important;
-    }
-
-    /* 4. 侧边栏样式 */
+    /* 3. 侧边栏与照片样式 */
     [data-testid="stSidebar"] { background-color: #f8f9fa; }
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
@@ -55,8 +67,8 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
-    
-    /* 5. 聊天与头像优化 */
+
+    /* 4. 聊天与头像优化 */
     [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
     }

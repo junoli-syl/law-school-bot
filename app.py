@@ -164,7 +164,7 @@ with st.sidebar:
     st.link_button("LinkedIn Profile", "https://www.linkedin.com/in/juno-shunyu-li")
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
     st.info("""
-    **Technical Note:** This digital agent is built by Juno using Python, Streamlit, and Google Gemini 2.5 Flash API. 
+    **Technical Note:** This digital agent is built by Juno using Python, Github, Streamlit, and Google Gemini 2.5 Flash API. 
     It demonstrates her proficiency in full-stack AI implementation and its application in professional storytelling.
     """)
 

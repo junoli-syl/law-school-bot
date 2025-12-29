@@ -3,44 +3,25 @@ import google.generativeai as genai
 import os
 
 # ==========================================
-# 1. 页面基础配置 (必须在最前面)
+# 1. 页面基础配置 & 视觉样式 (Times New Roman)
 # ==========================================
-st.set_page_config(
-    page_title="Juno Li's Law School AI Portfolio",
-    page_icon="⚖️",
-    layout="centered"
-)
-# --- 注入自定义 CSS 修改全局字体为 Times New Roman (含侧边栏) ---
+st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="centered")
+
 st.markdown(
     """
     <style>
-    /* 全局设置，包括 body, 侧边栏和 Markdown 容器 */
-    html, body, [data-testid="stSidebar"], [data-testid="stMarkdownContainer"], .stMarkdown, p, div, span, h1, h2, h3, h4, h5, h6 {
-        font-family: "Times New Roman", Times, serif !important;
-    }
+    /* 强制所有元素使用 Times New Roman */
+    * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 专门针对侧边栏标题和文字 */
-    [data-testid="stSidebar"] * {
-        font-family: "Times New Roman", Times, serif !important;
-    }
-    
-    /* 让侧边栏图片变成圆形并居中 */
+    /* 侧边栏照片：圆形、居中、固定大小 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
-    border-radius: 50%;
-    border: 2px solid #f0f2f6; /* 加一个浅色边框 */
-    width: 150px; /* 固定宽度，防止图片过大 */
-    margin: 0 auto;
-    display: block;
-    }
-    
-    /* 修改输入框字体 */
-    .stChatInput textarea {
-        font-family: "Times New Roman", Times, serif !important;
-    }
-
-    /* 优化按钮字体 */
-    .stButton>button {
-        font-family: "Times New Roman", Times, serif !important;
+        border-radius: 50%;
+        border: 2px solid #f0f2f6;
+        width: 150px !important;
+        height: 150px !important;
+        object-fit: cover;
+        margin: 0 auto;
+        display: block;
     }
     </style>
     """,
@@ -48,31 +29,25 @@ st.markdown(
 )
 
 # ==========================================
-# 2. 带缓存的 Grounding 读取
+# 2. 极致精简的文件读取 (利用 Session State 提速)
 # ==========================================
-@st.cache_data(show_spinner="Loading portfolio context...")
-def get_prioritized_context():
-    context_2025 = ""
-    context_2022 = ""
-    context_path = "context"
-    
-    if os.path.exists(context_path):
-        files = [f for f in os.listdir(context_path) if f.endswith('.txt')]
-        for filename in files:
-            file_path = os.path.join(context_path, filename)
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
+def load_context():
+    c2025, c2022 = "", ""
+    if os.path.exists("context"):
+        for f_name in os.listdir("context"):
+            if f_name.endswith(".txt"):
+                with open(os.path.join("context", f_name), "r", encoding="utf-8") as f:
                     content = f.read()
-                    if "_2025" in filename:
-                        context_2025 += f"\n[PRIMARY SOURCE 2025] File: {filename}\n{content}\n"
-                    elif "_2022" in filename:
-                        context_2022 += f"\n[SUPPLEMENTARY EXAMPLE 2022] File: {filename}\n{content}\n"
+                    if "_2025" in f_name:
+                        c2025 += f"\n[PRIMARY 2025] {f_name}:\n{content}\n"
                     else:
-                        context_2025 += f"\n[ADDITIONAL CONTEXT] File: {filename}\n{content}\n"
-            except Exception as e:
-                st.error(f"Error reading {filename}: {e}")
-    
-    return context_2025, context_2022
+                        c2022 += f"\n[SUPPLEMENTARY 2022] {f_name}:\n{content}\n"
+    return c2025, c2022
+
+if "grounding" not in st.session_state:
+    st.session_state.grounding = load_context()
+
+m2025, m2022 = st.session_state.grounding
 
 # ==========================================
 # 3. 初始化逻辑 (安全加载)

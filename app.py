@@ -14,34 +14,37 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 全局字体 */
+    /* 1. 全局字体设定 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. Hardcode 视觉修复：强制覆盖左上角图标 */
-    /* 定位左上角按钮容器并清除所有原始文本内容 */
-    [data-testid="collapsedControl"] {
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24 24' width='24' fill='%2331333F'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M17.59 18L19 16.59 14.42 12 19 7.41 17.59 6l-6 6z'/%3E%3Cpath d='M11 18l1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z'/%3E%3C/svg%3E") !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-size: 24px !important;
-        width: 40px !important;
-        height: 40px !important;
-    }
-
-    /* 暴力隐藏容器内原本的所有文字和原始图标节点 */
-    [data-testid="collapsedControl"] * {
-        display: none !important;
-        font-size: 0 !important;
+    /* 2. 终极 Hardcode：将 keyboard 字样物理替换为箭头符号 */
+    /* 我们直接锁定包含图标的 span，强制清空其文本并注入硬编码符号 */
+    [data-testid="collapsedControl"] span, 
+    [data-testid="collapsedControl"] i {
+        font-size: 0px !important;
         color: transparent !important;
+        position: relative;
     }
 
-    /* 隐藏顶部 Header 区域以防残留 */
+    [data-testid="collapsedControl"]::before {
+        /* 使用硬编码的衬线体箭头符号，完美契合 Times New Roman 风格 */
+        content: "«" !important; 
+        font-family: serif !important;
+        font-size: 22px !important;
+        color: #31333F !important;
+        display: block !important;
+        line-height: 1;
+        font-weight: bold;
+    }
+
+    /* 3. 彻底封死 Header 渲染路径 */
     header[data-testid="stHeader"] {
         background: transparent !important;
         color: transparent !important;
+        pointer-events: none !important;
     }
 
-    /* 3. 侧边栏样式优化 */
+    /* 4. 侧边栏样式 */
     [data-testid="stSidebar"] { background-color: #f8f9fa; }
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
@@ -53,9 +56,7 @@ st.markdown(
         display: block;
     }
     
-    [data-testid="stSidebar"] .stMarkdown { font-size: 0.9rem !important; }
-
-    /* 4. 聊天与头像 */
+    /* 5. 聊天与头像优化 */
     [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
     }

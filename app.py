@@ -149,9 +149,9 @@ with st.sidebar:
         """
         <div style="
             font-family: 'Times New Roman', Times, serif;
-            font-size: 0.6rem; 
+            font-size: 0.8rem; 
             color: #666; 
-            line-height: 1; 
+            line-height: 1.3; 
             margin-top: 20px;
             padding: 0 5px;
         ">

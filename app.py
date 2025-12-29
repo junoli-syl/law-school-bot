@@ -74,7 +74,7 @@ st.markdown(
     [data-testid="stSidebar"] [data-testid="stNotification"] p,
     [data-testid="stSidebar"] [data-testid="stNotification"] div,
     [data-testid="stSidebar"] [data-testid="stNotification"] span {
-        font-size: 0.7rem !important; /* 尝试先设为 0.7rem 看看效果 */
+        font-size: 0.5rem !important; /* 尝试先设为 0.7rem 看看效果 */
         color: #666 !important;
         line-height: 1.2 !important;
         margin-bottom: 0 !important;

@@ -155,7 +155,7 @@ active_model_name = st.session_state.model_name
 # ==========================================
 with st.sidebar:
     if os.path.exists("juno_photo.jpg"):
-        st.image("juno_photo.jpg", use_container_width="stretch")
+        st.image("juno_photo.jpg", width="stretch")
         
     st.title("Juno Li")
     st.caption("Technology Leader | JD Applicant")

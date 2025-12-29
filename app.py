@@ -1,91 +1,56 @@
 import streamlit as st
 import google.generativeai as genai
 import os
-import streamlit.components.v1 as components  # 必须包含这一行
 
 # ==========================================
-# 1. 页面基础配置 & 视觉样式 (Times New Roman)
+# 1. 页面基础配置 & 视觉样式
 # ==========================================
-st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="centered")
+st.set_page_config(
+    page_title="Juno Li's Law School AI Portfolio", 
+    layout="centered",
+    initial_sidebar_state="expanded" # 强制侧边栏初始状态为展开
+)
 
 st.markdown(
     """
     <style>
-    /* 强制全局字体 */
+    /* 1. 全局字体 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 修复图标渲染问题：将图标字体设为透明以隐藏 keyboard 字样 */
-    .material-icons, [data-testid="stIcon"] {
-        color: transparent !important;
+    /* 2. 视觉伪装：将左上角可能出现文字的区域设为透明并禁用点击 */
+    [data-testid="collapsedControl"], button[aria-label="Open sidebar"] {
+        opacity: 0 !important;
+        pointer-events: none !important;
         width: 0px !important;
     }
-
-    /* 侧边栏样式优化 */
-    [data-testid="stSidebar"] {
-        background-color: #f8f9fa;
+    
+    /* 隐藏顶部装饰条，这通常是 keyboard 字样出现的重灾区 */
+    header[data-testid="stHeader"] {
+        background: transparent !important;
+        color: transparent !important;
     }
 
+    /* 3. 侧边栏照片与样式 */
+    [data-testid="stSidebar"] { background-color: #f8f9fa; }
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
-        border: 2px solid #f0f2f6;
-        width: 140px !important;
-        height: 140px !important;
+        border: 2px solid #e0e0e0;
+        width: 130px !important;
+        height: 130px !important;
         object-fit: cover;
         margin: 0 auto;
         display: block;
     }
+    [data-testid="stSidebar"] .stMarkdown { font-size: 0.9rem !important; }
 
-    /* 侧边栏字体微调，防止拥挤 */
-    [data-testid="stSidebar"] .stMarkdown, [data-testid="stSidebar"] p {
-        font-size: 0.9rem !important;
-    }
-
-    /* 标题旁照片样式 */
-    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img {
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    /* 聊天头像样式 */
-    [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
+    /* 4. 聊天与头像 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
+    [data-testid="stChatMessageAvatarImage"] {
         border-radius: 50% !important;
     }
     </style>
     """,
     unsafe_allow_html=True
-)
-
-# JavaScript: 直接暴力删除左上角的按钮元素
-components.html(
-    """
-    <script>
-    const removeVisualBugs = () => {
-        // 尝试定位并删除侧边栏控制按钮
-        const selectors = [
-            'button[kind="header"]',
-            '[data-testid="collapsedControl"]',
-            '.st-emotion-cache-6qob1r'
-        ];
-        selectors.forEach(selector => {
-            const elements = window.parent.document.querySelectorAll(selector);
-            elements.forEach(el => el.remove());
-        });
-        
-        // 专门寻找包含那个错误文本的 span 并删除
-        const spans = window.parent.document.querySelectorAll('span');
-        spans.forEach(span => {
-            if (span.innerText.includes('keyboard')) {
-                span.parentElement.remove();
-            }
-        });
-    };
-    
-    // 每隔 0.5 秒检查一次，确保在 Streamlit 重新渲染时也能删掉
-    setInterval(removeVisualBugs, 500);
-    </script>
-    """,
-    height=0,
-    width=0
 )
 
 # ==========================================

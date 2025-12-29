@@ -149,7 +149,7 @@ with st.sidebar:
         """
         <div style="
             font-family: 'Times New Roman', Times, serif;
-            font-size: 0.9rem; 
+            font-size: 0.85rem; 
             color: #666; 
             line-height: 1.3; 
             margin-top: 20px;

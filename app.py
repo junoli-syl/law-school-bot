@@ -61,12 +61,12 @@ st.markdown(
     }
     /* F. 专门针对侧边栏 Technical Note (st.info) 的字体微调 */
     [data-testid="stSidebar"] [data-testid="stNotification"] {
-        padding: 0.7rem !important; /* 缩小内边距，让容器更紧凑 */
+        padding: 0.5rem !important; /* 缩小内边距，让容器更紧凑 */
     }
 
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
         font-size: 0.7rem !important; /* 调小字体 */
-        line-height: 1.4 !important;  /* 优化行间距 */
+        line-height: 1.2 !important;  /* 优化行间距 */
     }
     </style>
     """, 

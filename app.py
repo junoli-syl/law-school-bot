@@ -14,32 +14,30 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 全局字体强制执行 */
+    /* 1. 全局字体 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 视觉隐藏：针对左上角所有的渲染干扰 */
-    /* 隐藏整个顶部 Header 容器，彻底断绝 keyboard 字样的载体 */
+    /* 2. 核心修复：针对左上角那个顽固字样的视觉抹除 */
+    /* 隐藏顶部 Header 区域的文字显示 */
     header[data-testid="stHeader"] {
-        visibility: hidden !important;
-        height: 0px !important;
-    }
-
-    /* 隐藏侧边栏控制组件 */
-    [data-testid="collapsedControl"] {
-        display: none !important;
-    }
-
-    /* 额外预防：针对所有可能包含该文本的 div 和 span 进行透明化 */
-    div:contains("keyboard"), span:contains("keyboard") {
         color: transparent !important;
-        font-size: 0px !important;
+        background: transparent !important;
     }
 
-    /* 3. 侧边栏样式优化 */
-    [data-testid="stSidebar"] { 
-        background-color: #f8f9fa; 
+    /* 针对控制按钮内部的文本节点进行精准隐藏 */
+    [data-testid="collapsedControl"] {
+        color: transparent !important;
     }
 
+    /* 强制隐藏任何带有 "keyboard" 关键字的文本溢出 */
+    span:contains("keyboard"), div:contains("keyboard") {
+        display: none !important;
+        font-size: 0 !important;
+    }
+
+    /* 3. 侧边栏样式微调 */
+    [data-testid="stSidebar"] { background-color: #f8f9fa; }
+    
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -50,19 +48,16 @@ st.markdown(
         display: block;
     }
 
-    /* 缩小侧边栏字体以确保 display 完整 */
+    /* 缩小侧边栏字体，确保所有信息（含 Technical Note）在不滚动的情况下可见 */
     [data-testid="stSidebar"] .stMarkdown, 
     [data-testid="stSidebar"] p, 
-    [data-testid="stSidebar"] span,
-    [data-testid="stSidebar"] label { 
+    [data-testid="stSidebar"] span { 
         font-size: 0.85rem !important; 
     }
 
-    /* 4. 聊天与头像 */
-    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
+    /* 4. 聊天头像圆角 */
     [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
-        object-fit: cover;
     }
     </style>
     """,

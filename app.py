@@ -14,30 +14,26 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 全局字体 */
+    /* 1. 全局字体强制执行 (Times New Roman) */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 核心修复：针对左上角那个顽固字样的视觉抹除 */
-    /* 隐藏顶部 Header 区域的文字显示 */
-    header[data-testid="stHeader"] {
-        color: transparent !important;
-        background: transparent !important;
+    /* 2. 底层修复：恢复图标字体 */
+    /* 强制 Streamlit 的图标组件不使用 Times New Roman，从而变回图形而非文字 */
+    .material-icons, 
+    [data-testid="stIcon"], 
+    [data-testid="collapsedControl"] i,
+    button[kind="header"] i {
+        font-family: 'Material Icons' !important;
+        display: inline-block !important;
+        visibility: visible !important;
+        color: inherit !important; /* 恢复图标颜色 */
     }
 
-    /* 针对控制按钮内部的文本节点进行精准隐藏 */
-    [data-testid="collapsedControl"] {
-        color: transparent !important;
-    }
+    /* 如果你还是想彻底看不见它，请取消下面这行的注释 */
+    /* [data-testid="collapsedControl"] { display: none !important; } */
 
-    /* 强制隐藏任何带有 "keyboard" 关键字的文本溢出 */
-    span:contains("keyboard"), div:contains("keyboard") {
-        display: none !important;
-        font-size: 0 !important;
-    }
-
-    /* 3. 侧边栏样式微调 */
+    /* 3. 侧边栏样式优化 */
     [data-testid="stSidebar"] { background-color: #f8f9fa; }
-    
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -47,11 +43,10 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
-
-    /* 缩小侧边栏字体，确保所有信息（含 Technical Note）在不滚动的情况下可见 */
+    
+    /* 缩小侧边栏字体确保显示完整 */
     [data-testid="stSidebar"] .stMarkdown, 
-    [data-testid="stSidebar"] p, 
-    [data-testid="stSidebar"] span { 
+    [data-testid="stSidebar"] p { 
         font-size: 0.85rem !important; 
     }
 

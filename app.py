@@ -65,7 +65,7 @@ st.markdown(
     }
 
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.8rem !important; /* 调小字体 */
+        font-size: 0.7rem !important; /* 调小字体 */
         line-height: 1.4 !important;  /* 优化行间距 */
     }
     </style>

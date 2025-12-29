@@ -62,7 +62,7 @@ You have access to a long-context window containing Juno's Resume, Personal Stat
 
 # 初始化模型
 model = genai.GenerativeModel(
-    model_name="gemini-1.5-flash",
+    model_name="gemini-pro",
     system_instruction=SYSTEM_INSTRUCTION
 )
 

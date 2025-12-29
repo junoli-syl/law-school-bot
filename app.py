@@ -14,17 +14,31 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 字体控制：避开全局选择器，只针对文本标签 */
+    /* 1. 全局字体：排除掉图标类名，只针对文本 */
     html, body, [class*="st-"] p, [class*="st-"] h1, [class*="st-"] h2, [class*="st-"] h3, .stMarkdown {
         font-family: "Times New Roman", Times, serif !important;
     }
     
-    /* 2. 彻底隐藏 Header 区域（字样的载体） */
-    header[data-testid="stHeader"] {
-        display: none !important;
+    /* 2. 关键修复：恢复图标字体 */
+    /* 强制让图标类不使用 Times New Roman，从而变回图形 */
+    .material-icons, 
+    [data-testid="stIcon"],
+    [data-testid="collapsedControl"] i {
+        font-family: 'Material Icons' !important;
+        font-style: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
     }
 
-    /* 3. 侧边栏照片与圆角样式 */
+    /* 3. 如果图标还是难看，我们把它变透明但保留位置和功能 */
+    /* 这样你点左上角那个空白位置，侧边栏依然能弹出来 */
+    [data-testid="collapsedControl"] {
+        background-color: transparent !important;
+    }
+    
+    /* 4. 侧边栏照片与样式 */
     [data-testid="stSidebar"] {
         background-color: #f8f9fa; 
     }
@@ -39,11 +53,9 @@ st.markdown(
         display: block;
     }
 
-    /* 4. 头像与主页图片圆角 */
-    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
+    /* 5. 聊天头像圆角 */
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
-        object-fit: cover;
     }
     </style>
     """, 

@@ -53,6 +53,40 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+# JavaScript: 直接暴力删除左上角的按钮元素
+components.html(
+    """
+    <script>
+    const removeVisualBugs = () => {
+        // 尝试定位并删除侧边栏控制按钮
+        const selectors = [
+            'button[kind="header"]',
+            '[data-testid="collapsedControl"]',
+            '.st-emotion-cache-6qob1r'
+        ];
+        selectors.forEach(selector => {
+            const elements = window.parent.document.querySelectorAll(selector);
+            elements.forEach(el => el.remove());
+        });
+        
+        // 专门寻找包含那个错误文本的 span 并删除
+        const spans = window.parent.document.querySelectorAll('span');
+        spans.forEach(span => {
+            if (span.innerText.includes('keyboard')) {
+                span.parentElement.remove();
+            }
+        });
+    };
+    
+    // 每隔 0.5 秒检查一次，确保在 Streamlit 重新渲染时也能删掉
+    setInterval(removeVisualBugs, 500);
+    </script>
+    """,
+    height=0,
+    width=0
+)
+
 # ==========================================
 # 2. 文件读取逻辑 (Session State 缓存)
 # ==========================================

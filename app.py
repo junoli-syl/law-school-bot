@@ -78,19 +78,16 @@ Your goal is to represent Juno's professional background, academic achievements,
 """
 
 # ==========================================
-# 5. 模型初始化 (修复 404 问题的万能逻辑)
+# 5. 模型初始化 (动态探测可用模型)
 # ==========================================
 try:
-    # 自动获取当前 API Key 支持的所有模型名
     models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
     
-    # 优先级排序：1.5-flash > 1.5-pro > 任意可用模型
     if "models/gemini-1.5-flash" in models:
         target_model = "models/gemini-1.5-flash"
     elif "models/gemini-1.5-pro" in models:
         target_model = "models/gemini-1.5-pro"
     else:
-        # 如果都没有，取列表第一个非 legacy 的模型
         target_model = models[0]
 
     model = genai.GenerativeModel(
@@ -123,18 +120,3 @@ st.title("🙋‍♂️ Chat with Juno's AI")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    st.session_state.messages.append({"role": "assistant", "content": "Hello! I am Juno's digital representative. I've indexed her latest 2025 materials. How can I help you?"})
-
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
-
-# 快速提问按钮
-def click_button(prompt_text):
-    st.session_state.clicked_prompt = prompt_text
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.button("Why Law?", on_click=click_button, args=["Why do you want to go to law school given your tech career?"])
-with col2:
-    st.button("Tech Impact", on_click=click_

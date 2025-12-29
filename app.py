@@ -3,42 +3,42 @@ import google.generativeai as genai
 import os
 
 # ==========================================
-# 1. 页面配置：改用 auto 避开强制渲染 Bug
+# 1. 页面配置：锁定默认展开状态
 # ==========================================
 st.set_page_config(
     page_title="Juno Li's Law School AI Portfolio", 
     layout="centered",
-    initial_sidebar_state="auto" 
+    initial_sidebar_state="expanded"  # 确保进入页面时侧边栏就是展开的
 )
 
 st.markdown(
     """
     <style>
-    /* 1. 全局字体：排除掉图标类名，只针对文本 */
-    html, body, [class*="st-"] p, [class*="st-"] h1, [class*="st-"] h2, [class*="st-"] h3, .stMarkdown {
+    /* A. 字体精准控制：只针对文本标签应用 Times New Roman */
+    html, body, [class*="st-"] p, [class*="st-"] h1, [class*="st-"] h2, [class*="st-"] h3, .stMarkdown, .stButton {
         font-family: "Times New Roman", Times, serif !important;
     }
     
-    /* 2. 关键修复：恢复图标字体 */
-    /* 强制让图标类不使用 Times New Roman，从而变回图形 */
+    /* B. 图标恢复：强制按钮使用 Streamlit 原生图标字体，不被 Times New Roman 干扰 */
+    /* 这一步彻底解决了 "keyboard_double_arrow_right" 的显示问题 */
     .material-icons, 
     [data-testid="stIcon"],
-    [data-testid="collapsedControl"] i {
+    [data-testid="collapsedControl"] i,
+    [data-testid="collapsedControl"] span {
         font-family: 'Material Icons' !important;
-        font-style: normal;
-        font-variant: normal;
-        text-transform: none;
-        line-height: 1;
-        -webkit-font-smoothing: antialiased;
+        font-style: normal !important;
+        font-variant: normal !important;
+        text-transform: none !important;
+        line-height: 1 !important;
+        -webkit-font-smoothing: antialiased !important;
     }
 
-    /* 3. 如果图标还是难看，我们把它变透明但保留位置和功能 */
-    /* 这样你点左上角那个空白位置，侧边栏依然能弹出来 */
+    /* C. 视觉微调：即使在加载瞬间，也让图标颜色变淡或透明，避免文字闪烁 */
     [data-testid="collapsedControl"] {
-        background-color: transparent !important;
+        color: #31333F !important; /* 恢复为 Streamlit 默认深色图标颜色 */
     }
-    
-    /* 4. 侧边栏照片与样式 */
+
+    /* D. 侧边栏照片与圆角样式 (保持你的 150px 设计) */
     [data-testid="stSidebar"] {
         background-color: #f8f9fa; 
     }
@@ -53,9 +53,11 @@ st.markdown(
         display: block;
     }
 
-    /* 5. 聊天头像圆角 */
+    /* E. 对话头像与主页图片圆角 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
+        object-fit: cover;
     }
     </style>
     """, 

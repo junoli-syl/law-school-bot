@@ -122,6 +122,10 @@ with st.sidebar:
     st.markdown("### 🔗 Connect")
     st.link_button("LinkedIn Profile", "https://www.linkedin.com/in/juno-shunyu-li")
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
+    st.info("""
+    **Technical Note:** This digital agent is built by Juno using **Python**, **Streamlit**, and **Google Gemini 1.5 Flash API**. 
+    It demonstrates her proficiency in full-stack AI implementation and its application in professional storytelling.
+    """)
 
 # ==========================================
 # 5. 主界面渲染 (Header 使用 juno_headshot.jpeg)
@@ -174,7 +178,7 @@ if user_input:
 
     with st.chat_message("assistant", avatar="👩🏻‍💼"):
         if model:
-            with st.spinner("Analyzing portfolio..."):
+            with st.spinner("Synthesizing portfolio data for JD candidacy...")):
                 try:
                     history = [{"role": "model" if m["role"] == "assistant" else "user", "parts": [m["content"]]} for m in st.session_state.messages[:-1]]
                     chat = model.start_chat(history=history)

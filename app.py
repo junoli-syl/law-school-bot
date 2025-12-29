@@ -120,7 +120,7 @@ st.markdown("Ask about Juno's transition from Tech to Law.")
 
 # 初始化会话状态
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital representative. How can I help you today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. How can I help you today?"}]
 
 # 显示历史消息
 for msg in st.session_state.messages:
@@ -147,20 +147,23 @@ if "clicked_prompt" in st.session_state:
     user_input = st.session_state.clicked_prompt
     del st.session_state.clicked_prompt
 
+# 最后处理输入并生成回答
 if user_input:
-    # 立即显示用户消息
+    # 显示用户消息
     st.session_state.messages.append({"role": "user", "content": user_input})
+    # 注意：为了让按钮不消失，我们通常需要通过 st.rerun() 
+    # 或者确保处理逻辑在渲染逻辑之后。
+    # 最稳妥的方法是处理完后让 Streamlit 重新跑一遍脚本，按钮自然就回来了。
+    
     with st.chat_message("user"):
         st.markdown(user_input)
 
-    # 生成回答
     with st.chat_message("assistant"):
         if model is None:
-            st.error("AI is not ready. Please check API Key and configuration.")
+            st.error("AI is not ready.")
         else:
             with st.spinner("Analyzing portfolio..."):
                 try:
-                    # 转换历史
                     history = []
                     for m in st.session_state.messages[:-1]:
                         role = "model" if m["role"] == "assistant" else "user"
@@ -169,7 +172,9 @@ if user_input:
                     chat = model.start_chat(history=history)
                     response = chat.send_message(user_input)
                     reply = response.text
-                    st.markdown(reply)
                     st.session_state.messages.append({"role": "assistant", "content": reply})
+                    
+                    # 关键修复：生成完回答后强制刷新页面，让按钮重新在下方渲染
+                    st.rerun() 
                 except Exception as e:
                     st.error(f"Chat Error: {e}")

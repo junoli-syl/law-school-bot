@@ -10,22 +10,33 @@ st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="cente
 st.markdown(
     """
     <style>
-        /* 1. 全局字体强制执行 */
-        * { font-family: "Times New Roman", Times, serif !important; }
-        
-        /* 2. 彻底抹除左上角干扰文本 */
-        /* 隐藏侧边栏控制按钮容器 */
-        [data-testid="collapsedControl"], button[kind="header"] {
-            display: none !important;
+        /* 1. 强制全局字体，但排除图标组件 */
+        * { 
+            font-family: "Times New Roman", Times, serif !important; 
         }
         
-        /* 针对可能渲染出的文本节点进行彻底隐藏 */
-        header, .st-emotion-cache-6qob1r, .st-emotion-cache-16p0qsc {
+        /* 关键修复：恢复 Streamlit 图标字体，防止其显示为文字 */
+        .material-icons, [class^="st-emotion-cache"] i, [data-testid="stIcon"] {
+            font-family: 'Material Icons' !important;
+        }
+
+        /* 2. 彻底抹除左上角干扰文本的“三重保险” */
+        /* 第一重：完全隐藏侧边栏控制按钮 */
+        [data-testid="collapsedControl"], button[kind="header"] {
+            display: none !important;
             visibility: hidden !important;
+        }
+        
+        /* 第二重：定位并隐藏包含该文字的特定容器 */
+        .st-emotion-cache-6qob1r, .st-emotion-cache-16p0qsc, .st-emotion-cache-1090z0o {
+            display: none !important;
             height: 0 !important;
             width: 0 !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
+        }
+        
+        /* 第三重：隐藏顶部 Header 区域，防止任何溢出文本可见 */
+        header[data-testid="stHeader"] {
+            display: none !important;
         }
 
         /* 3. 侧边栏整体优化 */
@@ -33,7 +44,7 @@ st.markdown(
             background-color: #f8f9fa; 
         }
 
-        /* 侧边栏字体缩小 */
+        /* 侧边栏字体微调 */
         [data-testid="stSidebar"] .stMarkdown, 
         [data-testid="stSidebar"] h1, 
         [data-testid="stSidebar"] h2, 
@@ -172,7 +183,7 @@ with header_col2:
     st.title("Chat with Juno's AI")
 
 st.markdown("""
-Dear Admission officers, this is your gateway to Juno’s JD candidacy. This AI agent provides instant insights into her **career transition, technical leadership at CVS/Aetna, and specific law school motivations.
+Dear Admission officers, this is your gateway to Juno’s JD candidacy. This AI agent provides instant insights into her career transition, technical leadership at CVS/Aetna, and specific law school motivations.
 """)
 
 # 对话逻辑

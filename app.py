@@ -172,7 +172,7 @@ with header_col2:
     st.title("Chat with Juno's AI")
 
 st.markdown("""
-**Dear Admission officers, this is your gateway to Juno’s JD candidacy.** This AI agent provides instant insights into her **career transition**, **technical leadership at CVS/Aetna**, and **specific law school motivations**.
+Dear Admission officers, this is your gateway to Juno’s JD candidacy. This AI agent provides instant insights into her **career transition, technical leadership at CVS/Aetna, and specific law school motivations.
 """)
 
 # 对话逻辑

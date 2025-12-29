@@ -13,7 +13,7 @@ st.markdown(
     /* 强制所有元素使用 Times New Roman */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 侧边栏照片：圆形、居中、固定大小 */
+    /* 侧边栏照片样式 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #f0f2f6;
@@ -24,13 +24,13 @@ st.markdown(
         display: block;
     }
     
-    /* 让主界面标题旁边的小照片也变圆 */
+    /* 主界面标题旁的照片样式 */
     [data-testid="stHorizontalBlock"] [data-testid="stImage"] img {
         border-radius: 50%;
         object-fit: cover;
     }
 
-    /* 确保聊天气泡中的头像也是圆形的 */
+    /* 聊天气泡头像样式 */
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
     }
@@ -107,13 +107,11 @@ model = st.session_state.ai_model
 active_model_name = st.session_state.model_name
 
 # ==========================================
-# 4. 侧边栏构建
+# 4. 侧边栏构建 (锁定 juno_photo.jpg)
 # ==========================================
 with st.sidebar:
-    # 侧边栏使用你上传的照片
-    photo_path = "JunoLi_Headshot Square.jpeg"
-    if os.path.exists(photo_path):
-        st.image(photo_path, use_container_width=True)
+    if os.path.exists("juno_photo.jpg"):
+        st.image("juno_photo.jpg", use_container_width=True)
         
     st.title("Juno Li")
     st.caption("Technology Leader | JD Applicant")
@@ -126,12 +124,13 @@ with st.sidebar:
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
 
 # ==========================================
-# 5. 主界面渲染 (Header 使用新照片)
+# 5. 主界面渲染 (Header 使用 JunoLi_Headshot Square.jpeg)
 # ==========================================
-header_col1, header_col2 = st.columns([1, 5])
+header_photo = "JunoLi_Headshot Square.jpeg"
+header_col1, header_col2 = st.columns([1, 6])
 with header_col1:
-    if os.path.exists(photo_path):
-        st.image(photo_path, width=80)
+    if os.path.exists(header_photo):
+        st.image(header_photo, width=80)
 
 with header_col2:
     st.title("Chat with Juno's AI")
@@ -145,20 +144,24 @@ if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. I'm here to help you navigate her professional journey and motivations. Feel free to ask anything, or use the buttons below."}]
 
 for msg in st.session_state.messages:
-    # Assistant 用 👩🏻‍💼, User 用 ⚖️
+    # 按照你的要求：Assistant 使用 👩🏻‍💼, User 使用 ⚖️
     avatar_val = "👩🏻‍💼" if msg["role"] == "assistant" else "⚖️"
     with st.chat_message(msg["role"], avatar=avatar_val):
         st.markdown(msg["content"])
 
-# 快速提问
+# 快速提问按钮
 def handle_click(p): st.session_state.clicked_prompt = p
 
 st.markdown("---")
 c1, c2, c3 = st.columns(3)
-c1.button("Why Law?", on_click=handle_click, args=["Why do you want to go to law school given your tech career?"])
-c2.button("Tech Impact", on_click=handle_click, args=["Tell me about your technical leadership and its impact."])
-c3.button("Academic", on_click=handle_click, args=["Tell me about your academic background at GWU."])
+with c1:
+    st.button("Why Law?", on_click=handle_click, args=["Why do you want to go to law school given your tech career?"])
+with c2:
+    st.button("Tech Impact", on_click=handle_click, args=["Tell me about your technical leadership and its impact."])
+with c3:
+    st.button("Academic", on_click=handle_click, args=["Tell me about your academic background at GWU."])
 
+# 处理输入
 user_input = st.chat_input("Ask about Juno's background...")
 if "clicked_prompt" in st.session_state:
     user_input = st.session_state.clicked_prompt
@@ -171,7 +174,7 @@ if user_input:
 
     with st.chat_message("assistant", avatar="👩🏻‍💼"):
         if model:
-            with st.spinner("Analyzing..."):
+            with st.spinner("Analyzing portfolio..."):
                 try:
                     history = [{"role": "model" if m["role"] == "assistant" else "user", "parts": [m["content"]]} for m in st.session_state.messages[:-1]]
                     chat = model.start_chat(history=history)

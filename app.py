@@ -1,90 +1,42 @@
 import streamlit as st
 import google.generativeai as genai
 import os
-import streamlit.components.v1 as components
 
 # ==========================================
-# 1. 页面配置 & 视觉修复
+# 1. 页面基础配置 & 视觉样式 (原始版本)
 # ==========================================
-st.set_page_config(
-    page_title="Juno Li's Law School AI Portfolio", 
-    layout="centered",
-    initial_sidebar_state="expanded"
-)
-
-# 终极 JavaScript：强制硬编码左上角图标并清理文字
-components.html(
-"""
-    <script>
-    const fixIcon = () => {
-        // 1. 精准定位：只找侧边栏折叠按钮
-        const sidebarButton = window.parent.document.querySelector('[data-testid="collapsedControl"]');
-        
-        if (sidebarButton) {
-            // 找到按钮内部的所有文本节点
-            const textNodes = sidebarButton.querySelectorAll('span, i');
-            textNodes.forEach(el => {
-                // 只有当文本包含 "keyboard" 时才修改，且直接替换 HTML 确保彻底
-                if (el.innerText.includes('keyboard')) {
-                    el.style.fontSize = '0px';
-                    el.style.color = 'transparent';
-                    el.style.display = 'none';
-                }
-            });
-
-            // 2. 在按钮上注入硬编码的箭头 (如果还没注入的话)
-            if (!sidebarButton.querySelector('.custom-arrow')) {
-                const arrow = document.createElement('div');
-                arrow.className = 'custom-arrow';
-                arrow.innerText = '«'; 
-                arrow.style.fontFamily = 'serif';
-                arrow.style.fontSize = '22px';
-                arrow.style.color = '#31333F';
-                arrow.style.cursor = 'pointer';
-                arrow.style.lineHeight = '1';
-                sidebarButton.appendChild(arrow);
-            }
-        }
-    };
-
-    // 每 500 毫秒检查一次，平衡性能与响应速度
-    setInterval(fixIcon, 500);
-    </script>
-    """,
-    height=0,
-    width=0
-)
+st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="centered")
 
 st.markdown(
     """
     <style>
-    /* 1. 全局字体强制执行 */
+    /* 1. 强制全局主字体 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 预设透明，防止闪烁 */
-    [data-testid="collapsedControl"] span, 
-    [data-testid="collapsedControl"] i {
-        color: transparent;
+    /* 2. 侧边栏样式优化 */
+    [data-testid="stSidebar"] {
+        background-color: #f8f9fa; 
     }
 
-    /* 3. 侧边栏与照片样式 */
-    [data-testid="stSidebar"] { background-color: #f8f9fa; }
+    /* 侧边栏照片圆角与大小 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
-        width: 130px !important;
-        height: 130px !important;
+        width: 150px !important; 
+        height: 150px !important;
         object-fit: cover;
         margin: 0 auto;
         display: block;
     }
 
-    /* 4. 聊天与头像优化 */
-    [data-testid="stChatMessageAvatarImage"] img {
+    /* 3. 其他 UI 元素圆角优化 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
+    [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
+        object-fit: cover;
     }
     </style>
-    """,
+    """, 
     unsafe_allow_html=True
 )
 # ==========================================

@@ -59,14 +59,17 @@ st.markdown(
         border-radius: 50% !important;
         object-fit: cover;
     }
-    /* F. 专门针对侧边栏 Technical Note (st.info) 的字体微调 */
+    /* F. 去除侧边栏 st.info 的背景框和边框 */
     [data-testid="stSidebar"] [data-testid="stNotification"] {
-        padding: 0.5rem !important; /* 缩小内边距，让容器更紧凑 */
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important; /* 去除内边距，让文字靠左对齐 */
     }
 
+    /* 调整内部文字的大小 */
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.7rem !important; /* 调小字体 */
-        line-height: 1.2 !important;  /* 优化行间距 */
+        font-size: 0.8rem !important;
+        color: #666 !important; /* 稍微调浅一点颜色，体现其补充信息的性质 */
     }
     </style>
     """, 

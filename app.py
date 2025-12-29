@@ -62,12 +62,12 @@ st.markdown(
     /* F. 强制侧边栏宽度 */
     /* 1. 设置侧边栏展开时的宽度 */
     [data-testid="stSidebar"] {
-        width: 350px !important; /* 你可以在这里调整数值 */
+        width: 370px !important; /* 你可以在这里调整数值 */
     }
 
     /* 2. 确保主页面内容会自动根据侧边栏宽度进行偏移，防止重叠 */
     [data-testid="stSidebarCollapsedControl"] {
-        left: 350px !important; 
+        left: 370px !important; 
     }
     
     section[data-testid="stMain"] {

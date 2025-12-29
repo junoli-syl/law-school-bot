@@ -90,7 +90,7 @@ def initialize_agent():
         2. **Privacy:** Do not reveal home address or phone number.
         
         # RESPONSE RULES:
-        1. WORD LIMIT: Keep your responses around 300 words. Be concise but detailed enough for admissions officers.
+        1. WORD LIMIT: Keep your responses around 250 words. Be concise but detailed enough for admissions officers.
         2. TONE: Use formal, analytical language (Times New Roman style thinking).
         
         # GROUNDING DATA:

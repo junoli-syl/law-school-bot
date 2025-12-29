@@ -10,15 +10,25 @@ st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="cente
 st.markdown(
     """
     <style>
-    /* 1. 强制全局主字体 */
-    * { font-family: "Times New Roman", Times, serif !important; }
+    /* 1. 精准字体：只针对文本和 Markdown，不干扰系统图标类 */
+    html, body, [class*="st-"] p, [class*="st-"] h1, [class*="st-"] h2, [class*="st-"] h3, .stMarkdown {
+        font-family: "Times New Roman", Times, serif !important;
+    }
     
-    /* 2. 侧边栏样式优化 */
+    /* 2. 彻底抹除左上角干扰文本 (针对所有可能的渲染路径) */
+    /* 隐藏顶部 Header 容器，这是文字出现的物理载体 */
+    header[data-testid="stHeader"], [data-testid="collapsedControl"] {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+    }
+
+    /* 3. 侧边栏整体优化 */
     [data-testid="stSidebar"] {
         background-color: #f8f9fa; 
     }
 
-    /* 侧边栏照片圆角与大小 */
+    /* 侧边栏照片：保持 150px 圆形 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -29,7 +39,7 @@ st.markdown(
         display: block;
     }
 
-    /* 3. 其他 UI 元素圆角优化 */
+    /* 4. 其他 UI 元素圆角 (主页照片与聊天头像) */
     [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;

@@ -59,26 +59,6 @@ st.markdown(
         border-radius: 50% !important;
         object-fit: cover;
     }
-    /* F. 彻底去除背景并强制改变字号 */
-    [data-testid="stSidebar"] [data-testid="stNotification"],
-    [data-testid="stSidebar"] [data-testid="stNotification"] > div,
-    [data-testid="stSidebar"] [role="alert"] {
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        margin-top: 1.2rem !important; 
-    }
-
-    /* 终极锁定：针对通知容器内的所有文本、段落和 div */
-    [data-testid="stSidebar"] [data-testid="stNotification"] p,
-    [data-testid="stSidebar"] [data-testid="stNotification"] div,
-    [data-testid="stSidebar"] [data-testid="stNotification"] span {
-        font-size: 0.4rem !important; /* 尝试先设为 0.7rem 看看效果 */
-        color: #666 !important;
-        line-height: 0.8 !important;
-        margin-bottom: 0 !important;
-    }
     </style>
     """, 
     unsafe_allow_html=True
@@ -165,10 +145,22 @@ with st.sidebar:
     st.markdown("### 🔗 Connect")
     st.link_button("LinkedIn Profile", "https://www.linkedin.com/in/juno-shunyu-li")
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
-    st.info("""
-    **Technical Note:** This digital agent is built by Juno using Python, Github, Streamlit, and Google Gemini 2.5 Flash API. 
+    st.markdown(
+        """
+        <div style="
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.75rem; 
+            color: #666; 
+            line-height: 1.3; 
+            margin-top: 25px;
+            padding: 0 5px;
+        ">
+            <strong>Technical Note:</strong> This digital agent is built by Juno using Python, Github, Streamlit, and Google Gemini 2.5 Flash API. 
     It demonstrates her proficiency in full-stack AI implementation and its application in professional storytelling.
-    """)
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
 
 # ==========================================
 # 5. 主界面渲染 (Header 使用 juno_headshot.jpeg)

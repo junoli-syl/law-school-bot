@@ -24,6 +24,12 @@ st.markdown(
         display: block;
     }
     
+    /* 让主界面标题旁边的小照片也变圆 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
     /* 确保聊天气泡中的头像也是圆形的 */
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
@@ -34,7 +40,7 @@ st.markdown(
 )
 
 # ==========================================
-# 2. 文件读取逻辑
+# 2. 文件读取逻辑 (Session State 缓存)
 # ==========================================
 def load_context():
     c2025, c2022 = "", ""
@@ -49,36 +55,35 @@ def load_context():
                         c2022 += f"\n[SUPPLEMENTARY 2022] {f_name}:\n{content}\n"
     return c2025, c2022
 
-# 预先读取内容
 if "grounding" not in st.session_state:
     st.session_state.grounding = load_context()
 
 m2025, m2022 = st.session_state.grounding
 
 # ==========================================
-# 3. 初始化逻辑 (修复了变量引用错误)
+# 3. 初始化逻辑
 # ==========================================
 def initialize_agent(materials_2025, materials_2022):
     try:
         api_key = st.secrets["GOOGLE_API_KEY"]
         genai.configure(api_key=api_key)
         
-        # 自动探测模型
         models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
         target_model = "models/gemini-1.5-flash" if "models/gemini-1.5-flash" in models else models[0]
 
         system_instruction = f"""
         # ROLE: Digital Portfolio Agent for Juno Li (Law School Applicant).
         # HIERARCHY: Prioritize [PRIMARY SOURCE 2025] over [SUPPLEMENTARY EXAMPLE 2022].
-        # PERSONA: Professional, Tech-Savvy, Humble, International Perspective. You are the "Digital Portfolio Agent" for Juno Li, an applicant to top-tier US law schools (T6). Your goal is to represent Juno's professional background, academic achievements, and personal motivations to Law School Admissions Officers.
+        # PERSONA: Professional, Tech-Savvy, Humble, International Perspective.
+        # GOAL: Represent Juno Li's background to Law School Admissions Officers.
 
         # GUARDRAILS
         1. **Missing Information:** If unknown, say "I don't have that specific detail, but based on Juno's background in tech...".
         2. **Privacy:** Do not reveal home address or phone number.
         
         # RESPONSE RULES:
-        1. WORD LIMIT: Keep your responses less than 200 words. Be concise but detailed enough for admissions officers.
-        2. TONE: Use formal, analytical language (Times New Roman style thinking).
+        1. WORD LIMIT: Keep your responses less than 200 words.
+        2. TONE: Formal, analytical.
         
         # GROUNDING DATA:
         {materials_2025}
@@ -95,7 +100,6 @@ def initialize_agent(materials_2025, materials_2022):
         st.error(f"Initialization Failed: {e}")
         return None, None
 
-# 执行初始化 (传入之前读好的 m2025 和 m2022)
 if "ai_model" not in st.session_state:
     st.session_state.ai_model, st.session_state.model_name = initialize_agent(m2025, m2022)
 
@@ -106,8 +110,10 @@ active_model_name = st.session_state.model_name
 # 4. 侧边栏构建
 # ==========================================
 with st.sidebar:
-    if os.path.exists("juno_photo.jpg"):
-        st.image("juno_photo.jpg", use_container_width=True)
+    # 侧边栏使用你上传的照片
+    photo_path = "JunoLi_Headshot Square.jpeg"
+    if os.path.exists(photo_path):
+        st.image(photo_path, use_container_width=True)
         
     st.title("Juno Li")
     st.caption("Technology Leader | JD Applicant")
@@ -120,35 +126,40 @@ with st.sidebar:
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
 
 # ==========================================
-# 5. 主界面渲染
+# 5. 主界面渲染 (Header 使用新照片)
 # ==========================================
-st.title("👩🏻‍💼 Chat with Juno's AI")
+header_col1, header_col2 = st.columns([1, 5])
+with header_col1:
+    if os.path.exists(photo_path):
+        st.image(photo_path, width=80)
+
+with header_col2:
+    st.title("Chat with Juno's AI")
+
 st.markdown("""
 **Your gateway to Juno’s JD candidacy.** This AI agent provides instant insights into her **career transition**, **technical leadership at CVS/Aetna**, and **specific law school motivations**.
 """)
 
+# 对话逻辑
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. I'm here to help you navigate her professional background, academic achievements, and law school motivations. Feel free to ask anything, or use the quick-access buttons below to start."}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. I'm here to help you navigate her professional journey and motivations. Feel free to ask anything, or use the buttons below."}]
 
 for msg in st.session_state.messages:
-    avatar_img = "juno_photo.jpg" if msg["role"] == "assistant" else "⚖️"
-    with st.chat_message(msg["role"], avatar=avatar_img):
+    # Assistant 用 👩🏻‍💼, User 用 ⚖️
+    avatar_val = "👩🏻‍💼" if msg["role"] == "assistant" else "⚖️"
+    with st.chat_message(msg["role"], avatar=avatar_val):
         st.markdown(msg["content"])
 
-def handle_click(prompt):
-    st.session_state.clicked_prompt = prompt
+# 快速提问
+def handle_click(p): st.session_state.clicked_prompt = p
 
 st.markdown("---")
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.button("Why Law?", on_click=handle_click, args=["Why do you want to go to law school given your tech career?"])
-with col2:
-    st.button("Tech Impact", on_click=handle_click, args=["Tell me about your technical leadership and its impact."])
-with col3:
-    st.button("Academic", on_click=handle_click, args=["Tell me about your academic background at GWU."])
+c1, c2, c3 = st.columns(3)
+c1.button("Why Law?", on_click=handle_click, args=["Why do you want to go to law school given your tech career?"])
+c2.button("Tech Impact", on_click=handle_click, args=["Tell me about your technical leadership and its impact."])
+c3.button("Academic", on_click=handle_click, args=["Tell me about your academic background at GWU."])
 
 user_input = st.chat_input("Ask about Juno's background...")
-
 if "clicked_prompt" in st.session_state:
     user_input = st.session_state.clicked_prompt
     del st.session_state.clicked_prompt
@@ -158,17 +169,11 @@ if user_input:
     with st.chat_message("user", avatar="⚖️"):
         st.markdown(user_input)
 
-    with st.chat_message("assistant", avatar="juno_photo.jpg"):
-        if model is None:
-            st.error("AI is not ready.")
-        else:
-            with st.spinner("Analyzing portfolio..."):
+    with st.chat_message("assistant", avatar="👩🏻‍💼"):
+        if model:
+            with st.spinner("Analyzing..."):
                 try:
-                    history = []
-                    for m in st.session_state.messages[:-1]:
-                        role = "model" if m["role"] == "assistant" else "user"
-                        history.append({"role": role, "parts": [m["content"]]})
-                    
+                    history = [{"role": "model" if m["role"] == "assistant" else "user", "parts": [m["content"]]} for m in st.session_state.messages[:-1]]
                     chat = model.start_chat(history=history)
                     response = chat.send_message(user_input)
                     st.markdown(response.text)

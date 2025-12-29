@@ -133,7 +133,7 @@ if "messages" not in st.session_state:
 # 显示历史消息
 for msg in st.session_state.messages:
     # 为不同角色指定不同头像
-    avatar_img = "juno_photo.jpg" if msg["role"] == "user" else "⚖️"
+    avatar_img = "juno_photo.jpg" if msg["role"] == "assistant" else "⚖️"
     with st.chat_message(msg["role"], avatar=avatar_img):
         st.markdown(msg["content"])
 

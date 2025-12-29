@@ -68,7 +68,7 @@ st.markdown(
         box-shadow: none !important;
         padding: 0 !important;
         /* 增加顶部间距，让按钮和文字之间有呼吸感 */
-        margin-top: 1.5rem !important; 
+        margin-top: 1.2rem !important; 
     }
 
     /* 专门处理文字样式 */

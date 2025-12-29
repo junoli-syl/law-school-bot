@@ -10,6 +10,21 @@ st.set_page_config(
     page_icon="⚖️",
     layout="centered"
 )
+st.markdown(
+    """
+    <style>
+    /* 全局字体设置为 Times New Roman */
+    html, body, [class*="css"], .stMarkdown, p, div {
+        font-family: "Times New Roman", Times, serif !important;
+    }
+    /* 修改输入框字体 */
+    .stChatInput textarea {
+        font-family: "Times New Roman", Times, serif !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # ==========================================
 # 2. 带缓存的 Grounding 读取
@@ -57,6 +72,11 @@ def initialize_agent():
         # ROLE: Digital Portfolio Agent for Juno Li (Law School Applicant).
         # HIERARCHY: Prioritize [PRIMARY SOURCE 2025] over [SUPPLEMENTARY EXAMPLE 2022].
         # PERSONA: Professional, Tech-Savvy, Humble, International Perspective.
+        
+        # RESPONSE RULES:
+        1. WORD LIMIT: Keep your responses around 300 words. Be concise but detailed enough for admissions officers.
+        2. TONE: Use formal, analytical language (Times New Roman style thinking).
+        
         # GROUNDING DATA:
         {materials_2025}
         {materials_2022}

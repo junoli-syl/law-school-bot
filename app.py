@@ -14,37 +14,33 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 全局字体 (Times New Roman) */
+    /* 1. 全局字体强制执行 (Times New Roman) */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. Hardcode 箭头修复逻辑 */
-    /* 定位到左上角按钮容器 */
+    /* 2. 物理位移修复：将左上角干扰容器移出屏幕 */
     [data-testid="collapsedControl"] {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+        position: fixed !important;
+        left: -9999px !important; /* 移到左侧屏幕外 */
+        visibility: hidden !important;
     }
 
-    /* 彻底隐藏原来的长文字 keyboard_double_arrow_right */
-    [data-testid="collapsedControl"] span, 
-    [data-testid="collapsedControl"] i {
-        font-size: 0px !important;
+    /* 隐藏顶部 Header 栏，防止 keyboard 字样闪烁 */
+    header[data-testid="stHeader"] {
+        background: transparent !important;
         color: transparent !important;
-        display: none !important;
+        pointer-events: none !important;
     }
 
-    /* 在原位置 Hardcode 一个简洁的箭头符号 */
-    [data-testid="collapsedControl"]::before {
-        content: "«"; /* 或者使用 "‹" */
-        font-family: serif !important;
-        font-size: 24px !important;
-        color: #31333F !important; /* Streamlit 默认深灰色 */
-        cursor: pointer !important;
-        display: block !important;
+    /* 3. 侧边栏样式优化 */
+    [data-testid="stSidebar"] { 
+        background-color: #f8f9fa; 
     }
 
-    /* 3. 侧边栏照片与样式优化 */
-    [data-testid="stSidebar"] { background-color: #f8f9fa; }
+    /* 增加侧边栏顶部间距，补偿隐藏按钮后的视觉空缺 */
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+        padding-top: 2rem !important;
+    }
+
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -54,19 +50,22 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
-    [data-testid="stSidebar"] .stMarkdown { font-size: 0.9rem !important; }
 
-    /* 4. 聊天与头像 */
-    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
+    /* 缩小侧边栏字体确保显示完整 */
+    [data-testid="stSidebar"] .stMarkdown, 
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span { 
+        font-size: 0.85rem !important; 
+    }
+
+    /* 4. 聊天头像圆角 */
     [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
-        object-fit: cover;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
-
 # ==========================================
 # 2. 文件读取逻辑 (Session State 缓存)
 # ==========================================

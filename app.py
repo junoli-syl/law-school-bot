@@ -14,25 +14,36 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 全局字体强制执行 (Times New Roman) */
+    /* 1. 全局字体 (Times New Roman) */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 底层修复：恢复图标字体 */
-    /* 强制 Streamlit 的图标组件不使用 Times New Roman，从而变回图形而非文字 */
-    .material-icons, 
-    [data-testid="stIcon"], 
-    [data-testid="collapsedControl"] i,
-    button[kind="header"] i {
-        font-family: 'Material Icons' !important;
-        display: inline-block !important;
-        visibility: visible !important;
-        color: inherit !important; /* 恢复图标颜色 */
+    /* 2. Hardcode 箭头修复逻辑 */
+    /* 定位到左上角按钮容器 */
+    [data-testid="collapsedControl"] {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
-    /* 如果你还是想彻底看不见它，请取消下面这行的注释 */
-    /* [data-testid="collapsedControl"] { display: none !important; } */
+    /* 彻底隐藏原来的长文字 keyboard_double_arrow_right */
+    [data-testid="collapsedControl"] span, 
+    [data-testid="collapsedControl"] i {
+        font-size: 0px !important;
+        color: transparent !important;
+        display: none !important;
+    }
 
-    /* 3. 侧边栏样式优化 */
+    /* 在原位置 Hardcode 一个简洁的箭头符号 */
+    [data-testid="collapsedControl"]::before {
+        content: "«"; /* 或者使用 "‹" */
+        font-family: serif !important;
+        font-size: 24px !important;
+        color: #31333F !important; /* Streamlit 默认深灰色 */
+        cursor: pointer !important;
+        display: block !important;
+    }
+
+    /* 3. 侧边栏照片与样式优化 */
     [data-testid="stSidebar"] { background-color: #f8f9fa; }
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
@@ -43,16 +54,13 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
-    
-    /* 缩小侧边栏字体确保显示完整 */
-    [data-testid="stSidebar"] .stMarkdown, 
-    [data-testid="stSidebar"] p { 
-        font-size: 0.85rem !important; 
-    }
+    [data-testid="stSidebar"] .stMarkdown { font-size: 0.9rem !important; }
 
-    /* 4. 聊天头像圆角 */
+    /* 4. 聊天与头像 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
     [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
+        object-fit: cover;
     }
     </style>
     """,

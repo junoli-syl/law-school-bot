@@ -149,10 +149,10 @@ with st.sidebar:
         """
         <div style="
             font-family: 'Times New Roman', Times, serif;
-            font-size: 0.75rem; 
+            font-size: 0.6rem; 
             color: #666; 
-            line-height: 1.3; 
-            margin-top: 25px;
+            line-height: 1; 
+            margin-top: 20px;
             padding: 0 5px;
         ">
             <strong>Technical Note:</strong> This digital agent is built by Juno using Python, Github, Streamlit, and Google Gemini 2.5 Flash API. 

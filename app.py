@@ -59,7 +59,7 @@ st.markdown(
         border-radius: 50% !important;
         object-fit: cover;
     }
-    /* F. 彻底去除侧边栏 st.info 的背景，并增加顶部间距 */
+    /* F. 彻底去除背景并强制改变字号 */
     [data-testid="stSidebar"] [data-testid="stNotification"],
     [data-testid="stSidebar"] [data-testid="stNotification"] > div,
     [data-testid="stSidebar"] [role="alert"] {
@@ -67,15 +67,17 @@ st.markdown(
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
-        /* 增加顶部间距，让按钮和文字之间有呼吸感 */
-        margin-top: 1rem !important; 
+        margin-top: 1.2rem !important; 
     }
 
-    /* 专门处理文字样式 */
-    [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.5rem !important;
+    /* 终极锁定：针对通知容器内的所有文本、段落和 div */
+    [data-testid="stSidebar"] [data-testid="stNotification"] p,
+    [data-testid="stSidebar"] [data-testid="stNotification"] div,
+    [data-testid="stSidebar"] [data-testid="stNotification"] span {
+        font-size: 0.7rem !important; /* 尝试先设为 0.7rem 看看效果 */
         color: #666 !important;
         line-height: 1.2 !important;
+        margin-bottom: 0 !important;
     }
     </style>
     """, 

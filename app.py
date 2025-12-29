@@ -10,75 +10,47 @@ st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="cente
 st.markdown(
     """
     <style>
-        /* 1. 强制全局字体 */
-        * { 
-            font-family: "Times New Roman", Times, serif !important; 
-        }
-
-        /* 2. 彻底抹除左上角干扰文本的“最终方案” */
-        
-        /* 隐藏侧边栏顶部的折叠控制按钮容器 */
-        [data-testid="collapsedControl"] {
-            display: none !important;
-        }
-
-        /* 隐藏 Streamlit 顶部的整个 Header 栏（包含那个溢出的文字） */
-        header[data-testid="stHeader"] {
-            display: none !important;
-        }
-
-        /* 针对所有按钮，如果内部包含特定的 Material Icon 文本，则设为透明 */
-        button div p {
-            display: none !important;
-        }
-        
-        /* 彻底移除顶部空白和干扰 */
-        .stAppHeader {
-            display: none !important;
-        }
-
-        /* 3. 侧边栏整体优化 */
-        [data-testid="stSidebar"] {
-            background-color: #f8f9fa; 
-        }
-
-        /* 侧边栏字体微调 */
-        [data-testid="stSidebar"] .stMarkdown, 
-        [data-testid="stSidebar"] h1, 
-        [data-testid="stSidebar"] h2, 
-        [data-testid="stSidebar"] h3, 
-        [data-testid="stSidebar"] p,
-        [data-testid="stSidebar"] span,
-        [data-testid="stSidebar"] label {
-            font-size: 0.85rem !important; 
-            line-height: 1.3 !important;
-        }
-
-        /* 4. 侧边栏照片优化 */
-        [data-testid="stSidebar"] [data-testid="stImage"] img {
-            border-radius: 50%;
-            border: 2px solid #e0e0e0;
-            width: 120px !important; 
-            height: 120px !important;
-            object-fit: cover;
-            margin: 0 auto;
-            display: block;
-        }
+    /* 强制全局字体 */
+    * { font-family: "Times New Roman", Times, serif !important; }
     
-        /* 5. 专门优化侧边栏底部 Technical Note */
-        [data-testid="stSidebar"] .stInfo {
-            font-size: 0.75rem !important;
-            padding: 0.5rem !important;
-        }
-    
-        /* 6. 其他 UI 元素圆角优化 */
-        [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
-        [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
-            border-radius: 50% !important;
-            object-fit: cover;
-        }
+    /* 修复图标渲染问题：将图标字体设为透明以隐藏 keyboard 字样 */
+    .material-icons, [data-testid="stIcon"] {
+        color: transparent !important;
+        width: 0px !important;
+    }
+
+    /* 侧边栏样式优化 */
+    [data-testid="stSidebar"] {
+        background-color: #f8f9fa;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stImage"] img {
+        border-radius: 50%;
+        border: 2px solid #f0f2f6;
+        width: 140px !important;
+        height: 140px !important;
+        object-fit: cover;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* 侧边栏字体微调，防止拥挤 */
+    [data-testid="stSidebar"] .stMarkdown, [data-testid="stSidebar"] p {
+        font-size: 0.9rem !important;
+    }
+
+    /* 标题旁照片样式 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img {
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    /* 聊天头像样式 */
+    [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
+        border-radius: 50% !important;
+    }
     </style>
-    """, 
+    """,
     unsafe_allow_html=True
 )
 # ==========================================

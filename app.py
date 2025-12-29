@@ -3,32 +3,32 @@ import google.generativeai as genai
 import os
 
 # ==========================================
-# 1. 页面基础配置 & 视觉样式 (原始版本)
+# 1. 页面配置：改用 auto 避开强制渲染 Bug
 # ==========================================
-st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="centered")
+st.set_page_config(
+    page_title="Juno Li's Law School AI Portfolio", 
+    layout="centered",
+    initial_sidebar_state="auto" 
+)
 
 st.markdown(
     """
     <style>
-    /* 1. 精准字体：只针对文本和 Markdown，不干扰系统图标类 */
+    /* 1. 字体控制：避开全局选择器，只针对文本标签 */
     html, body, [class*="st-"] p, [class*="st-"] h1, [class*="st-"] h2, [class*="st-"] h3, .stMarkdown {
         font-family: "Times New Roman", Times, serif !important;
     }
     
-    /* 2. 彻底抹除左上角干扰文本 (针对所有可能的渲染路径) */
-    /* 隐藏顶部 Header 容器，这是文字出现的物理载体 */
-    header[data-testid="stHeader"], [data-testid="collapsedControl"] {
+    /* 2. 彻底隐藏 Header 区域（字样的载体） */
+    header[data-testid="stHeader"] {
         display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
     }
 
-    /* 3. 侧边栏整体优化 */
+    /* 3. 侧边栏照片与圆角样式 */
     [data-testid="stSidebar"] {
         background-color: #f8f9fa; 
     }
 
-    /* 侧边栏照片：保持 150px 圆形 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -39,7 +39,7 @@ st.markdown(
         display: block;
     }
 
-    /* 4. 其他 UI 元素圆角 (主页照片与聊天头像) */
+    /* 4. 头像与主页图片圆角 */
     [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;

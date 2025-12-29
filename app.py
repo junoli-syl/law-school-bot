@@ -115,12 +115,14 @@ with st.sidebar:
 # ==========================================
 # 5. 主界面渲染 (确保无论如何都会显示)
 # ==========================================
-st.title("🙋‍♂️ Chat with Juno's AI")
-st.markdown("Ask about Juno's transition from Tech to Law.")
+st.title("👩🏻‍💼 Chat with Juno's AI")
+st.markdown("""
+**Your gateway to Juno’s JD candidacy.** This AI agent provides instant insights into her **career transition**, **technical leadership at CVS/Aetna**, and **specific law school motivations**.
+""")
 
 # 初始化会话状态
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. How can I help you today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. I'm here to help you navigate her professional background, academic achievements, and law school motivations. Feel free to ask anything, or use the quick-access buttons below to start."}]
 
 # 显示历史消息
 for msg in st.session_state.messages:
@@ -162,7 +164,7 @@ if user_input:
         if model is None:
             st.error("AI is not ready.")
         else:
-            with st.spinner("Analyzing portfolio..."):
+            with st.spinner("Generating response..."):
                 try:
                     history = []
                     for m in st.session_state.messages[:-1]:

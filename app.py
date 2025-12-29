@@ -10,63 +10,64 @@ st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="cente
 st.markdown(
     """
     <style>
-    /* 1. 强制全局主字体 */
-    * { font-family: "Times New Roman", Times, serif !important; }
+        /* 1. 全局字体强制执行 */
+        * { font-family: "Times New Roman", Times, serif !important; }
+        
+        /* 2. 彻底抹除左上角干扰文本 */
+        /* 隐藏侧边栏控制按钮容器 */
+        [data-testid="collapsedControl"], button[kind="header"] {
+            display: none !important;
+        }
+        
+        /* 针对可能渲染出的文本节点进行彻底隐藏 */
+        header, .st-emotion-cache-6qob1r, .st-emotion-cache-16p0qsc {
+            visibility: hidden !important;
+            height: 0 !important;
+            width: 0 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        /* 3. 侧边栏整体优化 */
+        [data-testid="stSidebar"] {
+            background-color: #f8f9fa; 
+        }
+
+        /* 侧边栏字体缩小 */
+        [data-testid="stSidebar"] .stMarkdown, 
+        [data-testid="stSidebar"] h1, 
+        [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, 
+        [data-testid="stSidebar"] p,
+        [data-testid="stSidebar"] span,
+        [data-testid="stSidebar"] label {
+            font-size: 0.85rem !important; 
+            line-height: 1.3 !important;
+        }
+
+        /* 4. 侧边栏照片优化 */
+        [data-testid="stSidebar"] [data-testid="stImage"] img {
+            border-radius: 50%;
+            border: 2px solid #e0e0e0;
+            width: 120px !important; 
+            height: 120px !important;
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+        }
     
-    /* 2. 彻底消除左上角 arrow 文本干扰 */
-    /* 隐藏所有包含该文本的按钮及容器 */
-    [data-testid="collapsedControl"], 
-    button[kind="header"], 
-    .st-emotion-cache-6qob1r { 
-        display: none !important; 
-    }
+        /* 5. 专门优化侧边栏底部 Technical Note */
+        [data-testid="stSidebar"] .stInfo {
+            font-size: 0.75rem !important;
+            padding: 0.5rem !important;
+        }
     
-    /* 针对可能残留的文字节点进行隐藏 */
-    span:contains("keyboard"), 
-    div:contains("keyboard") {
-        display: none !important;
-    }
-
-    /* 3. 侧边栏整体优化 */
-    [data-testid="stSidebar"] {
-        background-color: #f8f9fa; 
-    }
-
-    /* 侧边栏字体缩小 */
-    [data-testid="stSidebar"] .stMarkdown, 
-    [data-testid="stSidebar"] h1, 
-    [data-testid="stSidebar"] h2, 
-    [data-testid="stSidebar"] h3, 
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] span,
-    [data-testid="stSidebar"] label {
-        font-size: 0.85rem !important; 
-        line-height: 1.3 !important;
-    }
-
-    /* 4. 侧边栏照片优化 */
-    [data-testid="stSidebar"] [data-testid="stImage"] img {
-        border-radius: 50%;
-        border: 2px solid #e0e0e0;
-        width: 120px !important; 
-        height: 120px !important;
-        object-fit: cover;
-        margin: 0 auto;
-        display: block;
-    }
-
-    /* 5. 专门优化侧边栏底部 Technical Note */
-    [data-testid="stSidebar"] .stInfo {
-        font-size: 0.75rem !important;
-        padding: 0.5rem !important;
-    }
-
-    /* 6. 其他 UI 元素圆角优化 */
-    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
-    [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
-        border-radius: 50% !important;
-        object-fit: cover;
-    }
+        /* 6. 其他 UI 元素圆角优化 */
+        [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
+        [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
+            border-radius: 50% !important;
+            object-fit: cover;
+        }
     </style>
     """, 
     unsafe_allow_html=True

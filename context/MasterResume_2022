@@ -1,0 +1,144 @@
+JUNO (SHUNYU) LI
+112 Morris St., Jersey City, NJ 07302 · (202) 415-5576 · lishunyu97@gmail.com · LinkedIn 
+EDUCATION
+THE GEORGE WASHINGTON UNIVERSITY (GW), School of Business		                    Washington, DC
+Bachelor of Science, Finance and Statistics, GPA: 3.85 summa cum laude 			                 May 2020
+Awards & Honors: Presidential Academic Scholarship; Dean’s List (Spring 2017, 2018, 2020; Fall 2017, 2019)           
+Certifications: Google GenAI Leader; Salesforce Agentforce Specialist; Pega Decisioning Consultant; Pega Senior System Architect; Pega Business Architect; SAFe® 5 Product Owner/Product Manager; SAFe® 5 Scrum Master; SAFe® 5 DevOps Practitioner; Tableau Desktop Specialist
+Competitions: 1st place in 2024 AWS Celebration of Women in Tech GameDay Hackathon; 2nd place the 2024 CVS Salesforce Hackathon
+
+SELECTED AWARDS & HONORS
+
+Winner (1st Place), AWS Celebration of Women in Tech GameDay (2024): Led a team of 4 to solve real-world cloud challenges using AWS services.
+Runner-up (2nd Place), CVS Health Salesforce Hackathon (2024): Developed a Pizza Tracker View to optimize customer engagement experiences.
+
+WORK EXPERIENCE
+AETNA, A CVS HEALTH COMPANY                                                                                                    New York, NY
+Senior Manager, Aetna Technology Technical Lead                                                                          May 2024–Present
+Lead Solution Architect, contracted through Randstad/Cloud Bridge Solutions                             Jun. 2023–May 2024
+Developed and piloted an AI-enabled communication orchestrator on GCP & Pega AWS integrating staffing predictors and member preferences; winning a $2M investment by demonstrating potential to elevate Aetna Medicare Star ratings.
+Delivered 17 deployments in 2024 and 7 in 2025. The use cases focus on prioritizing content, personalizing channels, and delivering the top prioritized communication on member level. Communication is delivered through SFMC (Salesforce Marketing Cloud) Journey Builder via three channels: SMS, Email, and Push Notifications, increasing customer engagement by 35% and achieving call defection rate of 20%.
+Led the full systems development lifecycle (SDLC) including design, development, testing, deployment, and Production Supports for 24 features over 1.5 years, increasing the customer base from 40K to 90K and daily marketing outreach volume from 10K to 20K, delivering a 120% ROI. 
+Architected cross-functional Omni-channel experience solutions involving MongoDB, Salesforce Marketing Cloud, Adobe AEM, Amazon S3, Salesforce Service Cloud, and Pega Customer Decision Hub (CDH) with a group of SMEs, spanning both on-prem and cloud-based platforms. The solution aims to provide members a seamless experience across Chat Support, Phone Support, and Proactive Communications.
+Served as MarTech Decisioning/Personalization Subject Matter Expert in GenAI design thinking sessions. Use cases include utilizing Salesforce Agentforce to complete CRM’s tasks such as sending Explanation of Benefits document on a member’s recent claim, summarizing enterprise FAQ document, etc., aiming a 5% enterprise cost saving by EOY.
+Directed holistic enterprise-level data orchestration across systems including Salesforce Data Cloud, GCP Data Lake, and Pega IH Summary, enabling future seamless omni-channel member experiences via API (REST/SOAP), Kafka, ETL, and file integrations.
+Advised cloud-based application migration from AWS infrastructure to GCP infrastructure, conducting Cost-benefit analysis (CBA), technical risk assessment, strategic planning, delivery phase analysis, etc, targeting a half million cost saving for the company.
+Sized delivery efforts based on high-level requirements and design comprehensive solutions promptly to support capital submissions and train-level budget planning.
+Won the 2nd place in the 2024 CVS Salesforce Hackathon with a demo integrated Pega CDH with Aetna Health website using Salesforce Mulesoft API, illustrating a POC on informing members on the status of a claim through its lifecycle.
+Won the 1st place in the 2024 AWS Celebration of Women in Tech GameDay Hackathon, organized by Amazon Web Services.
+Recruited and trained 14 engineers for Dev, QA, E2E, and Prod Support team; coached scrum team in SAFe Agile methodology, IT implementation, and IT Dellivery best practices, preparing the team to deliver scalable IT solutions for the firm.
+Provided strategic insights and made key decisions in both long-term (2026 delivery planning) and short-term (PI planning) implementation planning calls, optimizing delivery through prioritizing, bundling, and lean execution.
+Mentored cross-functional teams on high-level requirement understanding and detailed hands-on technical steps such as guiding BA on drafting proper user stories and requirement documents, and providing step-by-step testing guides to the QA/E2E team.
+Observed issues in the whole people, process, technology framework and proactively raised ideas on how to enhance and enable the team to follow the best-practice, helping the team to reduce potential production issues, positively influence other team members to achieve their professional goals; significantly improved team efficiency by 30%.
+Led development team sprint planning in Rally, defined dev tasks with detailed instructions, facilitated daily scrum calls, unblocked technical blockers, reviewed codes and unit test results, ensuring timely delivery above expectations. 
+Presented sprint reports to business stakeholders, and summarized team achievements for each feature, ensuring high-level transparency and alignment throughout the delivery process.
+Hosted technical design reviews and walkthroughs of architecture diagrams, facilitating detailed designs are properly communicated among teams and practitioners.
+Developed and unit tested user stories including configuring Signed JWT Authentication token enhancement, Data Transform, Strategy, IH Summary Dataset, Decision Tables, Activity, etc in Pega, scaling up delivery speed.
+Personally troubleshot high-priority production defects, and quickly complete design, solution, develop, and unit test within 5 hours SLA after defects were identified, minimizing user impacts.
+Fostered a positive and effective workplace environment and team trusts by organizing Send-Off events, farewell cards, team bonding activities.
+
+Workstream Lead, External Engagement, CVS Women In Technology                                          Jan 2025–Present
+Led 12 volunteers in the External Engagement workstream. Activities include promoting CVS speakers in major technology conferences, boosting CVS visibility among raising female STEM talents, etc.
+Managed external partner relationships for event collaboration and recruiting.
+Hosted bi-weekly team meetings and reported progress to the executive sponsors.
+
+Host/Volunteer, CVS Asian Professional Network Association                                                          Jan 2025–Present
+Led planning and execution of  the 2025 Enterprise Lunar New Year Celebration, including introduction on the origin of Lunar New Year, demonstration on paper cutting activity, and executive speakers; promoting Asian network within the enterprise and sharing cultures.
+Organized quarterly professional networking events (e.g., fireside chats) to encourage communications and knowledge sharing across departments and functions.
+
+ERNST & YOUNG, Digital and Emerging Technology Practice                                                          New York, NY
+Senior Technology Consultant, Platforms Sub-domain                                                                 Sept. 2020–Jul. 2023
+External Project #1: Servicing with Context In Messaging, large telecommunication client       May 2021–Nov 2022
+Delivered 32 use cases which predict customer’s intent and provide personalized customer service or targeted ads based on customer data collected. Data includes demographic data, disposition data, and customer interaction history data. 
+Deployed the intent prediction and personalized customer service to IVA (Chat/Messaging Support) and IVR (Customer Service Representative) channels which are part of Omni-channel customer experience blueprint.
+Roadmapped and architected the Omni-channel Customer Experience solution with an expansion to proactive communication channels such as Mail, and SMS, and passive channels such as local stores.
+Configured applications and models to predict customer preferences and offer tailored services and/or offers.
+Worked with cross-functional teams to understand mission spaces, define business requirements, and translate business and functional requirements into technical terms by creating user stories in JIRA, and process flows in MS Visio, as well as drafting functional requirement documents and UAT testing scripts. 
+Served as Lead Business Analyst and supported SLDC. Completed 4 major deployments across different channels within a year with zero defects. 
+Executed client state assessment to analyze business process flows and provided strategic recommendations on use case prioritization to define a roadmap that aligns with business strategies and goals.
+Created data catalog, logic workbook, Visio flows, use case inventory, and logic inventory to support client stakeholders’ understanding of the implementation design. 
+Conducted knowledge transfer training sessions on user acceptance, user stories, and testing scripts to ensure a smooth knowledge transfer with the client.
+Championed Agile methodologies and facilitated technology transformation, reducing the 6-month SLDC to every 2 weeks.
+
+External Project #2: Pega Customer Decision Hub, large insurance client                                 Mar. 2021–May 2021
+Architected solution in cloud-based decisioning engine Pega NBA Designer by configuring actions, treatments, and channels. The solution utilizes AI and the Bayes prediction model to help the client deliver tailored promotions to customers as part of their cross-sell, up-sell, and retention strategies. 
+Led Wavespace sessions to define the future roadmap, enabling the firm to secure additional deals.
+
+EY Internal Business Development Projects                                                                                      Sept. 2020–Present            
+SME & Project Manager, MarTech Maturity Assessment Model
+Created a MarTech Market Maturity Assessment Model to benchmark clients’ MarTech positions and identify growth paths, opening more sales opportunities for the firm. 
+The model contains 200+ assessments question and evaluate clients’ MarTech Maturity level from below aspects: Technology Stack, Integration & Interoperability, Data Strategy & Usage, Automation & Workflow Orchestration, Personalization & Customer Experience, Measurement & Optimization, and Governance, Compliance & Security.
+Product Owner/Developer, EY Pega Loyalty Solution
+Built a prototype mobile application that provides targeted offers based on customer data. The application includes various features such as allowing the customer to donate their rewards to preferred charities and view reward point earning/spending history. 
+Drafted 50+ user stories in MS Azure including detailed acceptance criteria and desired UI, as well as hosting daily standups to ensure the application can be delivered in Pegasystems annual summit.
+Scrum Master & Functional Lead, EY Compassionate Collection Solution
+Managed 5-member development team using Azure DevOps to develop an AI-powered financial coach that helps big banks’ customers avoid delinquencies. The solution was sold to a major financial services client.
+National Lead, Women in Technology, EY’s first virtual professional network
+Managed 18 volunteers and organized 45 national events that engaged 2K+ participants to empower women. 
+Produced viral Women’s History Month video in Adobe Premiere with 2K+ views on LinkedIn.
+Supported launch of the EY STEM App’s to 100K girls aged 13–18 in 2022, promoting equality in the tech industry. 
+Program Lead, PegaTalk
+Hosted monthly webinar series with industry experts to share trending Pega industrial knowledge. 
+Nominated for the FY22 Global Consulting Learning Excellence Award.
+Created 3 RFPs and 4 solution demos. Won contracts with clients in the financial service and healthcare industries.
+
+WORLD BANK GROUP                                                                                                                                   Washington, DC
+Short-Term Database Consultant, Solution for Youth Employment                                          May 2019–Aug. 2019
+Built knowledge repository and project portal by defining 63 theme terms and coding 170+ World Bank projects and 50+ partners projects to promote knowledge sharing among World Bank Group and public- and private-sector partners. 
+Conducted data analysis using Excel, visualized numerical information into 23 graphs/charts, and created a 20-page deck including a mind map series to summarize a 60-page academic report on youth employment. Deck was distributed to World Bank economists and member countries’ government officials to guide program design.
+Developed automatic coding program in R that processed 220+ projects (22K+ pages) in 1 week versus 1.5 months. 
+Initiated survey campaign to collect partner project information; cleaned data and incorporated it into the repository.
+
+INTERNATIONAL MONETARY FUND                                                                                                       Washington, DC
+Logistic Intern                                                                                                                                  Aug. 2018–Dec. 2018
+Liaised with high-profile clients such as representatives from member countries’ finance ministries and central banks to clarify and communicate meeting details for major IMF events. 
+Managed public, private, and confidential IMF/World Bank reservation calendars, ensured their accuracy, and identified errors and issues in a timely manner.
+
+SCHOOL OF BUSINESS, GWU                                                                                                                       Washington, DC
+Research Fellow                                                                                                                                 Oct. 2018–Oct. 2019
+Used Excel to collect and analyze data to develop data depository on firm-country distances and national markets, which helped managers internationalize their firms and helped policymakers generate social welfare-enhancing solutions.
+Collected census data on numbers of firms/startups in different U.S. counties and used SAS to run regression analysis on relationships between natural disasters and entrepreneurship.
+Used STATA to merge databases of 179 county names and FIPS codes to analyze the impacts of Hurricane Katrina.
+
+
+CONSULTING COMMUNITY OF PRACTICE (CoP)                                                                                 Washington, DC
+Mentee – Student Lead – Industry Mentor                                                  Sept. 2018–Sept. 2019–May 2020–Present
+Initiated and organized mock interviews to prepare students for the upcoming recruitment season.
+Invited industry mentors to share their work experience and recommendations.
+Collaborated with colleagues on diverse business cases and presented decks to 23 audiences and 2–3 industry mentors.
+Founded the research arm for community engagement consulting and initiated a project to develop a pricing model by conducting interviews with 30 public schools to help NPOs bridge the gap between cost and revenue.
+
+
+RESEARCH & PROJECT EXPERIENCE
+COMMODITY FUTURES TRADING COMMISSION PROPOSED RULES                                           Washington, DC
+Business Economics and Public Policy Research Project                                                            Sept. 2017–Dec. 2017
+Composed a business memo summarizing the basic principles of regulation automated trading from a 126-page federal document and analyzed agencies and parties impacted by this proposed rule.
+Assessed the market failures responsible for government intervention by researching the history of the NYSE, the 2010 “Flash Crash,” relevant technological advancements, and market volatility.
+Generated a neutral Senate Report by synthesizing and integrating arguments of all 139 public comments from both for and against sides into a coherent but critical evaluation.
+
+ELEANOR ROOSEVELT PAPERS PROJECT                                                                                              Washington DC
+Research Intern                                                                                                                                 Feb. 2017–May 2017
+Gathered, analyzed, and summarized information on figures in Mrs. Roosevelt’s relationship network to clarify the letters she wrote during her lifetime, contributing to her biography, Volume 3. Transcribed 24 pages of historical documents.
+
+VOLUNTEER & STUDENT ORGANIZATION EXPERIENCE
+Director of Research and Analytics, Community Engagement Consulting, GWU                                                      2019
+Vice President of Communication, Undergraduate Consulting Group, GWU                           	                          2019
+Executive Vice President, GWU Chinese Students and Scholars Association, GWU                              	   2016–2019
+Finance and Outreach Intern, A Child for All, DC                                                                             Jun. 2018–Aug. 2018
+Volunteer, So Others Might Eat, DC                                                                                                                   2017–2019
+Kids Power, DC                                                                                                                                                   2017–2018
+
+
+SKILLS
+Technical: SAFe Agile Scrum Master, SAFe Agile Product Owner/Product Manager, JIRA, Rally, Mulesoft API, Azure DevOps, Microsoft ADO, Pega CDH, R, Visio, Lean Six Sigma, Tableau, SQL, Python, SAS, SPSS, MS Suite, Salesforce, Salesforce Marketing Cloud, Adobe Premiere Pro, Photoshop, Bloomberg, AWS
+Language: Mandarin (Native), English (Fluent), Japanese (Basic)
+Interests: Tennis (National 2nd Level Athlete), Baritone, Video Editing, Musical, Traveling (11 countries), Baking, Jogging
+
+
+OTHER WORK EXPERIENCE
+Resident Advisor, the George Washington University                                                                      Aug. 2018–May 2020
+Student Ambassador & Chinese Tutor, the George Washington University                                      Feb. 2017–May 2020
+Research fellow, GWU School of Business                                                                                        Oct. 2018–Oct. 2019
+Finance and Operations Intern, Zerin Business Consulting, Inc.                                                       May 2018–Aug. 2018
+Marketing Intern, The Washington Diplomat                                                                                      Jan. 2018–May 2018
+Teacher Assistant, Seminole State College of Florida                                                                          Jun. 2017–Jul. 2017

@@ -10,15 +10,27 @@ st.set_page_config(
     page_icon="⚖️",
     layout="centered"
 )
+# --- 注入自定义 CSS 修改全局字体为 Times New Roman (含侧边栏) ---
 st.markdown(
     """
     <style>
-    /* 全局字体设置为 Times New Roman */
-    html, body, [class*="css"], .stMarkdown, p, div {
+    /* 全局设置，包括 body, 侧边栏和 Markdown 容器 */
+    html, body, [data-testid="stSidebar"], [data-testid="stMarkdownContainer"], .stMarkdown, p, div, span, h1, h2, h3, h4, h5, h6 {
         font-family: "Times New Roman", Times, serif !important;
     }
+    
+    /* 专门针对侧边栏标题和文字 */
+    [data-testid="stSidebar"] * {
+        font-family: "Times New Roman", Times, serif !important;
+    }
+
     /* 修改输入框字体 */
     .stChatInput textarea {
+        font-family: "Times New Roman", Times, serif !important;
+    }
+
+    /* 优化按钮字体 */
+    .stButton>button {
         font-family: "Times New Roman", Times, serif !important;
     }
     </style>
@@ -164,7 +176,7 @@ if user_input:
         if model is None:
             st.error("AI is not ready.")
         else:
-            with st.spinner("Generating response..."):
+            with st.spinner("Generating response, it make take up to 2 minutes..."):
                 try:
                     history = []
                     for m in st.session_state.messages[:-1]:

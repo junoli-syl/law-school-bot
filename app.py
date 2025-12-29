@@ -73,7 +73,7 @@ st.markdown(
 
     /* 专门处理文字样式 */
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.7rem !important;
+        font-size: 0.5rem !important;
         color: #666 !important;
         line-height: 1.2 !important;
     }

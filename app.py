@@ -59,7 +59,7 @@ st.markdown(
         border-radius: 50% !important;
         object-fit: cover;
     }
-    /* F. 彻底去除侧边栏 st.info 的所有背景、边框和阴影 */
+    /* F. 彻底去除侧边栏 st.info 的背景，并增加顶部间距 */
     [data-testid="stSidebar"] [data-testid="stNotification"],
     [data-testid="stSidebar"] [data-testid="stNotification"] > div,
     [data-testid="stSidebar"] [role="alert"] {
@@ -67,14 +67,15 @@ st.markdown(
         border: none !important;
         box-shadow: none !important;
         padding: 0 !important;
-        margin: 0 !important;
+        /* 增加顶部间距，让按钮和文字之间有呼吸感 */
+        margin-top: 1.5rem !important; 
     }
 
-    /* 专门处理文字和图标的样式 */
+    /* 专门处理文字样式 */
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.7rem !important;
+        font-size: 0.8rem !important;
         color: #666 !important;
-        line-height: 1.3 !important;
+        line-height: 1.5 !important;
     }
     </style>
     """, 

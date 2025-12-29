@@ -23,6 +23,12 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
+    
+    /* 确保聊天气泡中的头像也是圆形的 */
+    [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
+        border-radius: 50% !important;
+    }
+    
     </style>
     """,
     unsafe_allow_html=True
@@ -74,7 +80,7 @@ def initialize_agent():
         2. **Privacy:** Do not reveal home address or phone number.
         
         # RESPONSE RULES:
-        1. WORD LIMIT: Keep your responses around 250 words. Be concise but detailed enough for admissions officers.
+        1. WORD LIMIT: Keep your responses less than 200 words. Be concise but detailed enough for admissions officers.
         2. TONE: Use formal, analytical language (Times New Roman style thinking).
         
         # GROUNDING DATA:
@@ -126,7 +132,9 @@ if "messages" not in st.session_state:
 
 # 显示历史消息
 for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
+    # 为不同角色指定不同头像
+    avatar_img = "juno_photo.jpg" if msg["role"] == "user" else "⚖️"
+    with st.chat_message(msg["role"], avatar=avatar_img):
         st.markdown(msg["content"])
 
 # --- 快速提问按钮 ---
@@ -157,10 +165,10 @@ if user_input:
     # 或者确保处理逻辑在渲染逻辑之后。
     # 最稳妥的方法是处理完后让 Streamlit 重新跑一遍脚本，按钮自然就回来了。
     
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="⚖️"):
         st.markdown(user_input)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar="juno_photo.jpg"):
         if model is None:
             st.error("AI is not ready.")
         else:

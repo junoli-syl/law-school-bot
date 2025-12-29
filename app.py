@@ -1,46 +1,59 @@
 import streamlit as st
 import google.generativeai as genai
 import os
+import streamlit.components.v1 as components # 必须导入这个
 
 # ==========================================
-# 1. 页面基础配置 & 视觉样式
+# 1. 页面配置
 # ==========================================
 st.set_page_config(
     page_title="Juno Li's Law School AI Portfolio", 
     layout="centered",
-    initial_sidebar_state="expanded" # 强制侧边栏初始状态为展开
+    initial_sidebar_state="expanded"
+)
+
+# JavaScript 暴力删除逻辑
+components.html(
+    """
+    <script>
+    const hideBugs = () => {
+        // 1. 定位并彻底删除左上角按钮容器
+        const bugElement = window.parent.document.querySelector('[data-testid="collapsedControl"]');
+        if (bugElement) bugElement.remove();
+
+        // 2. 定位并删除包含 "keyboard" 字样的所有 span
+        const spans = window.parent.document.querySelectorAll('span');
+        spans.forEach(span => {
+            if (span.innerText.includes('keyboard')) {
+                span.style.display = 'none';
+                if(span.parentElement) span.parentElement.remove();
+            }
+        });
+        
+        // 3. 隐藏 Header 容器
+        const header = window.parent.document.querySelector('header');
+        if (header) header.style.display = 'none';
+    };
+    
+    // 每 200 毫秒检查一次，防止 Streamlit 重新渲染时字样跳出来
+    setInterval(hideBugs, 200);
+    </script>
+    """,
+    height=0,
+    width=0
 )
 
 st.markdown(
     """
     <style>
-    /* 1. 全局字体强制执行 (Times New Roman) */
+    /* 1. 全局字体 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 物理位移修复：将左上角干扰容器移出屏幕 */
-    [data-testid="collapsedControl"] {
-        position: fixed !important;
-        left: -9999px !important; /* 移到左侧屏幕外 */
-        visibility: hidden !important;
-    }
+    /* 2. 隐藏 Header 以防万一 */
+    header { visibility: hidden !important; }
 
-    /* 隐藏顶部 Header 栏，防止 keyboard 字样闪烁 */
-    header[data-testid="stHeader"] {
-        background: transparent !important;
-        color: transparent !important;
-        pointer-events: none !important;
-    }
-
-    /* 3. 侧边栏样式优化 */
-    [data-testid="stSidebar"] { 
-        background-color: #f8f9fa; 
-    }
-
-    /* 增加侧边栏顶部间距，补偿隐藏按钮后的视觉空缺 */
-    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
-        padding-top: 2rem !important;
-    }
-
+    /* 3. 侧边栏样式 */
+    [data-testid="stSidebar"] { background-color: #f8f9fa; }
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -50,15 +63,13 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
-
-    /* 缩小侧边栏字体确保显示完整 */
-    [data-testid="stSidebar"] .stMarkdown, 
-    [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] span { 
-        font-size: 0.85rem !important; 
+    
+    /* 侧边栏内容位置微调 */
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+        padding-top: 1rem !important;
     }
 
-    /* 4. 聊天头像圆角 */
+    /* 4. 头像圆角 */
     [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
     }

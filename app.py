@@ -59,6 +59,15 @@ st.markdown(
         border-radius: 50% !important;
         object-fit: cover;
     }
+    /* F. 专门针对侧边栏 Technical Note (st.info) 的字体微调 */
+    [data-testid="stSidebar"] [data-testid="stNotification"] {
+        padding: 0.7rem !important; /* 缩小内边距，让容器更紧凑 */
+    }
+
+    [data-testid="stSidebar"] [data-testid="stNotification"] div {
+        font-size: 0.8rem !important; /* 调小字体 */
+        line-height: 1.4 !important;  /* 优化行间距 */
+    }
     </style>
     """, 
     unsafe_allow_html=True

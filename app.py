@@ -10,35 +10,61 @@ st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="cente
 st.markdown(
     """
     <style>
-    /* 强制所有元素使用 Times New Roman */
+    /* 全局主字体 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 侧边栏照片样式 */
+    /* 隐藏左上角多余的箭头文字图标 */
+    button[kind="header"] { display: none; }
+    [data-testid="collapsedControl"] { display: none; }
+
+    /* 侧边栏整体优化 */
+    [data-testid="stSidebar"] {
+        background-color: #f8f9fa; 
+        min-width: 250px !important;
+    }
+
+    /* 侧边栏字体缩小：确保内容不溢出 */
+    [data-testid="stSidebar"] .stMarkdown, 
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3, 
+    [data-testid="stSidebar"] p,
+    [data-testid="stSidebar"] span {
+        font-size: 0.85rem !important; /* 进一步微调以适配小屏幕 */
+        line-height: 1.3 !important;
+    }
+
+    /* 侧边栏照片：保持圆形并居中 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
-        border: 2px solid #f0f2f6;
-        width: 150px !important;
-        height: 150px !important;
+        border: 2px solid #e0e0e0;
+        width: 120px !important; /* 略微缩小以确保侧边栏呼吸感 */
+        height: 120px !important;
         object-fit: cover;
         margin: 0 auto;
         display: block;
     }
-    
+
+    /* 专门优化侧边栏底部 Technical Note */
+    [data-testid="stSidebar"] .stInfo {
+        font-size: 0.75rem !important;
+        padding: 0.5rem !important;
+    }
+
     /* 主界面标题旁的照片样式 */
     [data-testid="stHorizontalBlock"] [data-testid="stImage"] img {
         border-radius: 50%;
         object-fit: cover;
     }
 
-    /* 聊天气泡头像样式 */
+    /* 聊天头像样式 */
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
     }
     </style>
-    """,
+    """, 
     unsafe_allow_html=True
 )
-
 # ==========================================
 # 2. 文件读取逻辑 (Session State 缓存)
 # ==========================================
@@ -123,7 +149,7 @@ with st.sidebar:
     st.link_button("LinkedIn Profile", "https://www.linkedin.com/in/juno-shunyu-li")
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
     st.info("""
-    **Technical Note:** This digital agent is built by Juno using **Python**, **Streamlit**, and **Google Gemini 1.5 Flash API**. 
+    **Technical Note:** This digital agent is built by Juno using Python, Streamlit, and Google Gemini 2.5 Flash API. 
     It demonstrates her proficiency in full-stack AI implementation and its application in professional storytelling.
     """)
 

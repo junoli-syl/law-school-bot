@@ -28,14 +28,13 @@ st.markdown(
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
     }
-    
     </style>
     """,
     unsafe_allow_html=True
 )
 
 # ==========================================
-# 2. 极致精简的文件读取 (利用 Session State 提速)
+# 2. 文件读取逻辑
 # ==========================================
 def load_context():
     c2025, c2022 = "", ""
@@ -50,21 +49,19 @@ def load_context():
                         c2022 += f"\n[SUPPLEMENTARY 2022] {f_name}:\n{content}\n"
     return c2025, c2022
 
+# 预先读取内容
 if "grounding" not in st.session_state:
     st.session_state.grounding = load_context()
 
 m2025, m2022 = st.session_state.grounding
 
 # ==========================================
-# 3. 初始化逻辑 (安全加载)
+# 3. 初始化逻辑 (修复了变量引用错误)
 # ==========================================
-def initialize_agent():
+def initialize_agent(materials_2025, materials_2022):
     try:
         api_key = st.secrets["GOOGLE_API_KEY"]
         genai.configure(api_key=api_key)
-        
-        # 获取缓存的资料
-        materials_2025, materials_2022 = get_prioritized_context()
         
         # 自动探测模型
         models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
@@ -98,15 +95,19 @@ def initialize_agent():
         st.error(f"Initialization Failed: {e}")
         return None, None
 
-# ==========================================
-# 4. 执行初始化并构建侧边栏
-# ==========================================
-model, active_model_name = initialize_agent()
+# 执行初始化 (传入之前读好的 m2025 和 m2022)
+if "ai_model" not in st.session_state:
+    st.session_state.ai_model, st.session_state.model_name = initialize_agent(m2025, m2022)
 
+model = st.session_state.ai_model
+active_model_name = st.session_state.model_name
+
+# ==========================================
+# 4. 侧边栏构建
+# ==========================================
 with st.sidebar:
-    # 1. 加入照片
     if os.path.exists("juno_photo.jpg"):
-        st.sidebar.image("juno_photo.jpg", use_container_width=True)
+        st.image("juno_photo.jpg", use_container_width=True)
         
     st.title("Juno Li")
     st.caption("Technology Leader | JD Applicant")
@@ -119,28 +120,25 @@ with st.sidebar:
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")
 
 # ==========================================
-# 5. 主界面渲染 (确保无论如何都会显示)
+# 5. 主界面渲染
 # ==========================================
 st.title("👩🏻‍💼 Chat with Juno's AI")
 st.markdown("""
 **Your gateway to Juno’s JD candidacy.** This AI agent provides instant insights into her **career transition**, **technical leadership at CVS/Aetna**, and **specific law school motivations**.
 """)
 
-# 初始化会话状态
 if "messages" not in st.session_state:
     st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. I'm here to help you navigate her professional background, academic achievements, and law school motivations. Feel free to ask anything, or use the quick-access buttons below to start."}]
 
-# 显示历史消息
 for msg in st.session_state.messages:
-    # 为不同角色指定不同头像
     avatar_img = "juno_photo.jpg" if msg["role"] == "assistant" else "⚖️"
     with st.chat_message(msg["role"], avatar=avatar_img):
         st.markdown(msg["content"])
 
-# --- 快速提问按钮 ---
 def handle_click(prompt):
     st.session_state.clicked_prompt = prompt
 
+st.markdown("---")
 col1, col2, col3 = st.columns(3)
 with col1:
     st.button("Why Law?", on_click=handle_click, args=["Why do you want to go to law school given your tech career?"])
@@ -149,22 +147,14 @@ with col2:
 with col3:
     st.button("Academic", on_click=handle_click, args=["Tell me about your academic background at GWU."])
 
-# --- 处理用户输入 ---
 user_input = st.chat_input("Ask about Juno's background...")
 
-# 检查是否有按钮被点击
 if "clicked_prompt" in st.session_state:
     user_input = st.session_state.clicked_prompt
     del st.session_state.clicked_prompt
 
-# 最后处理输入并生成回答
 if user_input:
-    # 显示用户消息
     st.session_state.messages.append({"role": "user", "content": user_input})
-    # 注意：为了让按钮不消失，我们通常需要通过 st.rerun() 
-    # 或者确保处理逻辑在渲染逻辑之后。
-    # 最稳妥的方法是处理完后让 Streamlit 重新跑一遍脚本，按钮自然就回来了。
-    
     with st.chat_message("user", avatar="⚖️"):
         st.markdown(user_input)
 
@@ -172,7 +162,7 @@ if user_input:
         if model is None:
             st.error("AI is not ready.")
         else:
-            with st.spinner("Generating response, it make take up to 2 minutes..."):
+            with st.spinner("Analyzing portfolio..."):
                 try:
                     history = []
                     for m in st.session_state.messages[:-1]:
@@ -181,10 +171,8 @@ if user_input:
                     
                     chat = model.start_chat(history=history)
                     response = chat.send_message(user_input)
-                    reply = response.text
-                    st.session_state.messages.append({"role": "assistant", "content": reply})
-                    
-                    # 关键修复：生成完回答后强制刷新页面，让按钮重新在下方渲染
-                    st.rerun() 
+                    st.markdown(response.text)
+                    st.session_state.messages.append({"role": "assistant", "content": response.text})
+                    st.rerun()
                 except Exception as e:
                     st.error(f"Chat Error: {e}")

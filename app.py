@@ -23,7 +23,16 @@ st.markdown(
     [data-testid="stSidebar"] * {
         font-family: "Times New Roman", Times, serif !important;
     }
-
+    
+    /* 让侧边栏图片变成圆形并居中 */
+    [data-testid="stSidebar"] [data-testid="stImage"] img {
+    border-radius: 50%;
+    border: 2px solid #f0f2f6; /* 加一个浅色边框 */
+    width: 150px; /* 固定宽度，防止图片过大 */
+    margin: 0 auto;
+    display: block;
+    }
+    
     /* 修改输入框字体 */
     .stChatInput textarea {
         font-family: "Times New Roman", Times, serif !important;
@@ -114,6 +123,10 @@ def initialize_agent():
 model, active_model_name = initialize_agent()
 
 with st.sidebar:
+    # 1. 加入照片
+    if os.path.exists("juno_photo.jpg"):
+        st.sidebar.image("juno_photo.jpg", use_container_width=True)
+        
     st.title("Juno Li")
     st.caption("Technology Leader | JD Applicant")
     if active_model_name:

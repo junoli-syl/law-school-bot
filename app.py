@@ -14,24 +14,32 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    /* 1. 全局字体 */
+    /* 1. 全局字体强制执行 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 2. 视觉伪装：将左上角可能出现文字的区域设为透明并禁用点击 */
-    [data-testid="collapsedControl"], button[aria-label="Open sidebar"] {
-        opacity: 0 !important;
-        pointer-events: none !important;
-        width: 0px !important;
-    }
-    
-    /* 隐藏顶部装饰条，这通常是 keyboard 字样出现的重灾区 */
+    /* 2. 视觉隐藏：针对左上角所有的渲染干扰 */
+    /* 隐藏整个顶部 Header 容器，彻底断绝 keyboard 字样的载体 */
     header[data-testid="stHeader"] {
-        background: transparent !important;
-        color: transparent !important;
+        visibility: hidden !important;
+        height: 0px !important;
     }
 
-    /* 3. 侧边栏照片与样式 */
-    [data-testid="stSidebar"] { background-color: #f8f9fa; }
+    /* 隐藏侧边栏控制组件 */
+    [data-testid="collapsedControl"] {
+        display: none !important;
+    }
+
+    /* 额外预防：针对所有可能包含该文本的 div 和 span 进行透明化 */
+    div:contains("keyboard"), span:contains("keyboard") {
+        color: transparent !important;
+        font-size: 0px !important;
+    }
+
+    /* 3. 侧边栏样式优化 */
+    [data-testid="stSidebar"] { 
+        background-color: #f8f9fa; 
+    }
+
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
@@ -41,12 +49,20 @@ st.markdown(
         margin: 0 auto;
         display: block;
     }
-    [data-testid="stSidebar"] .stMarkdown { font-size: 0.9rem !important; }
+
+    /* 缩小侧边栏字体以确保 display 完整 */
+    [data-testid="stSidebar"] .stMarkdown, 
+    [data-testid="stSidebar"] p, 
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label { 
+        font-size: 0.85rem !important; 
+    }
 
     /* 4. 聊天与头像 */
     [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
-    [data-testid="stChatMessageAvatarImage"] {
+    [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
+        object-fit: cover;
     }
     </style>
     """,

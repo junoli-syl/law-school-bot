@@ -6,7 +6,7 @@ import os
 # 1. 页面配置：锁定默认展开状态
 # ==========================================
 st.set_page_config(
-    page_title="Juno Li's Law School AI Portfolio", 
+    page_title="Juno’s Admission AI Representative", 
     layout="centered",
     initial_sidebar_state="expanded"  # 确保进入页面时侧边栏就是展开的
 )
@@ -155,7 +155,7 @@ active_model_name = st.session_state.model_name
 # ==========================================
 with st.sidebar:
     if os.path.exists("juno_photo.jpg"):
-        st.image("juno_photo.jpg", use_container_width=True)
+        st.image("juno_photo.jpg", use_container_width="stretch")
         
     st.title("Juno Li")
     st.caption("Technology Leader | JD Applicant")
@@ -180,7 +180,7 @@ with header_col1:
         st.image(header_photo, width=80)
 
 with header_col2:
-    st.title("Chat with Juno's AI")
+    st.title("Chat with Juno’s Admission AI Representative")
 
 st.markdown("""
 Dear Admission officers, this is your gateway to Juno’s JD candidacy. This AI agent provides instant insights into her career transition, technical leadership at CVS/Aetna, and specific law school motivations.
@@ -188,7 +188,7 @@ Dear Admission officers, this is your gateway to Juno’s JD candidacy. This AI 
 
 # 对话逻辑
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno's digital law school representative. I'm here to help you navigate her professional journey and motivations. Feel free to ask anything, or use the buttons below."}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! I am Juno’s Admission AI Representative. I'm here to help you navigate her professional journey and motivations. Feel free to ask anything, or use the buttons below."}]
 
 for msg in st.session_state.messages:
     # 按照你的要求：Assistant 使用 👩🏻‍💼, User 使用 ⚖️

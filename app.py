@@ -59,17 +59,22 @@ st.markdown(
         border-radius: 50% !important;
         object-fit: cover;
     }
-    /* F. 去除侧边栏 st.info 的背景框和边框 */
-    [data-testid="stSidebar"] [data-testid="stNotification"] {
+    /* F. 彻底去除侧边栏 st.info 的所有背景、边框和阴影 */
+    [data-testid="stSidebar"] [data-testid="stNotification"],
+    [data-testid="stSidebar"] [data-testid="stNotification"] > div,
+    [data-testid="stSidebar"] [role="alert"] {
         background-color: transparent !important;
         border: none !important;
-        padding: 0 !important; /* 去除内边距，让文字靠左对齐 */
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
-    /* 调整内部文字的大小 */
+    /* 专门处理文字和图标的样式 */
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
-        font-size: 0.8rem !important;
-        color: #666 !important; /* 稍微调浅一点颜色，体现其补充信息的性质 */
+        font-size: 0.7rem !important;
+        color: #666 !important;
+        line-height: 1.3 !important;
     }
     </style>
     """, 

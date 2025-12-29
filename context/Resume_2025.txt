@@ -8,50 +8,50 @@ THE GEORGE WASHINGTON UNIVERSITY Washington, DC Bachelor of Science, Finance and
 WORK EXPERIENCE
 AETNA, A CVS HEALTH COMPANY New York, NY
 Senior Manager & Technical Lead, Aetna Technology Jun. 2023–Present
-● Directed the full Software Development Life Cycle (SDLC) for a team of 19 engineers. Architected
+ Directed the full Software Development Life Cycle (SDLC) for a team of 19 engineers. Architected
 scalable solutions using Java and SQL to support 28 new features in Member Experience Orchestration, expanding customer base from 40K to 90K and volume from 10K to 25K, driving a verified 130% ROI.
-● Developed and demoed an AI-enabled communication orchestrator prototype on GCP & AWS. Integrated staffing predictors and member preferences using Python for data modeling and machine learning, securing a $2M investment with direct support from Aetna COO by proving potential to elevate Medicare Star ratings.
-● Engineered enterprise-level data orchestration across Salesforce Data Cloud and GCP Data Lake. Built robust API integrations (REST/SOAP) and Kafka pipelines to enable real-time, omni-channel user experiences.
-● Modernized deployment infrastructure by spearheading CI/CD implementation and complex Pega Infinity migrations across 5 cross-functional teams; coached engineers in SAFe Agile methodologies, achieving zero-downtime deployments while accelerating feature release cycles.
-● Awards:
-o Winner(1stPlace),AWSCelebrationofWomeninTechGameDay(2024):Ledteamto
+ Developed and demoed an AI-enabled communication orchestrator prototype on GCP & AWS. Integrated staffing predictors and member preferences using Python for data modeling and machine learning, securing a $2M investment with direct support from Aetna COO by proving potential to elevate Medicare Star ratings.
+ Engineered enterprise-level data orchestration across Salesforce Data Cloud and GCP Data Lake. Built robust API integrations (REST/SOAP) and Kafka pipelines to enable real-time, omni-channel user experiences.
+ Modernized deployment infrastructure by spearheading CI/CD implementation and complex Pega Infinity migrations across 5 cross-functional teams; coached engineers in SAFe Agile methodologies, achieving zero-downtime deployments while accelerating feature release cycles.
+ Awards:
+ Winner(1stPlace),AWSCelebrationofWomeninTechGameDay(2024):Ledteamto
 solve real-world cloud infrastructure challenges by live coding in AWS.
-o Runner-up,CVSHealthSalesforceHackathon(2024):Builtaclaimtrackingprototype
+ Runner-up,CVSHealthSalesforceHackathon(2024):Builtaclaimtrackingprototype
 leveraging MuleSoft APIs to optimize customer transparency.
 Workstream Lead, External Engagement, CVS Women In Technology Jan. 2025–Present
-● Directed a volunteer network of 150+ members to execute high-visibility industry events; negotiated
+ Directed a volunteer network of 150+ members to execute high-visibility industry events; negotiated
 and finalized a strategic partnership agreement between CVS Health and the Society of Women Engineers (SWE) to formalize colleague networking initiatives.
     
 ERNST & YOUNG, Digital and Emerging Technology Practice New York, NY
 Senior Technology Consultant, Platforms Sub-domain Sep. 2020–Jul. 2023
-● Delivered distinct algorithmic use cases for personalized customer engagement; wrote complex SQL
+ Delivered distinct algorithmic use cases for personalized customer engagement; wrote complex SQL
 queries to structure demographic datasets within Adaptive Models, directly increasing client
 ad-targeting precision and conversion rates.
-● Architected the proprietary "Communications Customer Analytical Data Model" (xCAR) to
+ Architected the proprietary "Communications Customer Analytical Data Model" (xCAR) to
 streamline data ingestion; collaborated with Java developers to refactor out-of-the-box Pega
 functionalities, solving critical latency issues for high-volume banking and telecom clients.
-● Built a full-stack prototype application for targeted loyalty offers (churn prevention, dynamic
+ Built a full-stack prototype application for targeted loyalty offers (churn prevention, dynamic
 promotions). Programmed logic flows and data visualizations to demonstrate technical feasibility to
 C-suite clients.
-● Created a comprehensive MarTech Maturity Assessment Model evaluating 200+ risk and
+ Created a comprehensive MarTech Maturity Assessment Model evaluating 200+ risk and
 performance indicators; advised Fortune 500 CIOs on technology governance, data privacy compliance, and stack modernization roadmaps.
 National Lead, EY Women In Technology Sep. 2020–Jul. 2023
-● Managed 18 volunteers and executed 45 events engaging 2,000+ participants. Produced a viral
+ Managed 18 volunteers and executed 45 events engaging 2,000+ participants. Produced a viral
 campaign supporting the launch of the EY STEM App to 100k+ girls.
 
 WORLD BANK GROUP Washington, DC Short-Term Database Consultant, Solution for Youth Employment May 2019–Aug. 2019
-● Built knowledge repository and project portal by running R to define 63 theme terms and coding
+ Built knowledge repository and project portal by running R to define 63 theme terms and coding
 170+ World Bank projects and 50+ partners projects to promote knowledge sharing among World
 Bank Group and public- and private-sector partners.
-● Conducted data analysis using Excel and Tableau, visualized numerical information into 23
+ Conducted data analysis using Excel and Tableau, visualized numerical information into 23
 graphs/charts, and created a 20-page deck including a mind map series to summarize a 60-page academic report on youth employment. Distributed findings to World Bank economists and government officials, guiding program design for member countries.
 
 INDEPENDENT LEGAL RESEARCH Washington, DC CFTC Regulation on Automated Trading Sep. 2017–Dec. 2017
-● Composed a business memo summarizing the basic principles of regulation automated trading from a
+ Composed a business memo summarizing the basic principles of regulation automated trading from a
 126-page federal document and analyzed agencies and parties impacted by this proposed rule.
-● Assessed the market failures responsible for government intervention by researching the history of the
+ Assessed the market failures responsible for government intervention by researching the history of the
 NYSE, the 2010 “Flash Crash,” relevant technological advancements, and market volatility.
-● Generated a neutral Senate Report by synthesizing and integrating arguments of all 139 public
+ Generated a neutral Senate Report by synthesizing and integrating arguments of all 139 public
 comments from both for and against sides into a coherent but critical evaluation.
 
 SKILLS & CERTIFICATIONS

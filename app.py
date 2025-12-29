@@ -10,56 +10,62 @@ st.set_page_config(page_title="Juno Li's Law School AI Portfolio", layout="cente
 st.markdown(
     """
     <style>
-    /* 全局主字体 */
+    /* 1. 强制全局主字体 */
     * { font-family: "Times New Roman", Times, serif !important; }
     
-    /* 隐藏左上角多余的箭头文字图标 */
-    button[kind="header"] { display: none; }
-    [data-testid="collapsedControl"] { display: none; }
-
-    /* 侧边栏整体优化 */
-    [data-testid="stSidebar"] {
-        background-color: #f8f9fa; 
-        min-width: 250px !important;
+    /* 2. 彻底消除左上角 arrow 文本干扰 */
+    /* 隐藏所有包含该文本的按钮及容器 */
+    [data-testid="collapsedControl"], 
+    button[kind="header"], 
+    .st-emotion-cache-6qob1r { 
+        display: none !important; 
+    }
+    
+    /* 针对可能残留的文字节点进行隐藏 */
+    span:contains("keyboard"), 
+    div:contains("keyboard") {
+        display: none !important;
     }
 
-    /* 侧边栏字体缩小：确保内容不溢出 */
+    /* 3. 侧边栏整体优化 */
+    [data-testid="stSidebar"] {
+        background-color: #f8f9fa; 
+    }
+
+    /* 侧边栏字体缩小 */
     [data-testid="stSidebar"] .stMarkdown, 
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
     [data-testid="stSidebar"] h3, 
     [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] span {
-        font-size: 0.85rem !important; /* 进一步微调以适配小屏幕 */
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label {
+        font-size: 0.85rem !important; 
         line-height: 1.3 !important;
     }
 
-    /* 侧边栏照片：保持圆形并居中 */
+    /* 4. 侧边栏照片优化 */
     [data-testid="stSidebar"] [data-testid="stImage"] img {
         border-radius: 50%;
         border: 2px solid #e0e0e0;
-        width: 120px !important; /* 略微缩小以确保侧边栏呼吸感 */
+        width: 120px !important; 
         height: 120px !important;
         object-fit: cover;
         margin: 0 auto;
         display: block;
     }
 
-    /* 专门优化侧边栏底部 Technical Note */
+    /* 5. 专门优化侧边栏底部 Technical Note */
     [data-testid="stSidebar"] .stInfo {
         font-size: 0.75rem !important;
         padding: 0.5rem !important;
     }
 
-    /* 主界面标题旁的照片样式 */
-    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img {
-        border-radius: 50%;
-        object-fit: cover;
-    }
-
-    /* 聊天头像样式 */
+    /* 6. 其他 UI 元素圆角优化 */
+    [data-testid="stHorizontalBlock"] [data-testid="stImage"] img,
     [data-testid="stChatMessage"] [data-testid="stChatMessageAvatarImage"] img {
         border-radius: 50% !important;
+        object-fit: cover;
     }
     </style>
     """, 
@@ -144,7 +150,6 @@ with st.sidebar:
     if active_model_name:
         st.success(f"✅ Active: {active_model_name.replace('models/', '')}")
     
-    st.markdown("---")
     st.markdown("### 🔗 Connect")
     st.link_button("LinkedIn Profile", "https://www.linkedin.com/in/juno-shunyu-li")
     st.link_button("Download Resume", "https://drive.google.com/file/d/16NSJE6s9_ZPOMMuZy3ObCd4L7u39er-B/view?usp=sharing")

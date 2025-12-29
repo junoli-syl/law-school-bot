@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 import os
+import streamlit.components.v1 as components  # 必须包含这一行
 
 # ==========================================
 # 1. 页面基础配置 & 视觉样式 (Times New Roman)

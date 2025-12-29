@@ -75,7 +75,7 @@ st.markdown(
     [data-testid="stSidebar"] [data-testid="stNotification"] div {
         font-size: 0.4 rem !important;
         color: #666 !important;
-        line-height: 1.2 !important;
+        line-height: 0.8 !important;
     }
     </style>
     """, 

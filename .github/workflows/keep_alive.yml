@@ -1,15 +1,20 @@
-name: Streamlit Keep Alive & Health Check
+name: Streamlit Keep Alive
 
 on:
   schedule:
+    # 每 6 小时运行一次 (UTC 时间 0, 6, 12, 18 点)
     - cron: '0 */6 * * *'
-  workflow_dispatch: 
+  workflow_dispatch: # 允许你手动点击测试
 
 jobs:
   ping_site:
     runs-on: ubuntu-latest
     steps:
       - name: Wake up Streamlit App
-        # 去掉 -f (强制失败)，改用更稳健的重试机制
+        # 使用 -L 追踪重定向，-A 伪装 Chrome 浏览器，--retry 增加容错性
+        # 注意：这里去掉了 -f，防止因短暂的 307 重定向导致 GitHub 判定失败
         run: |
-          curl -L --retry 3 --retry-delay 5 https://junolawschoolrep.streamlit.app/ -I
+          curl -L -I -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" \
+          --retry 3 \
+          --retry-delay 10 \
+          https://junolawschoolrep.streamlit.app/

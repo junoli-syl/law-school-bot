@@ -1,0 +1,16 @@
+name: Streamlit Keep Alive & Health Check
+
+on:
+  schedule:
+    # 每 6 小时运行一次 (UTC 时间：0, 6, 12, 18 点)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: 
+
+jobs:
+  ping_site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake up Streamlit App
+        # -f 失败时返回非零状态码，-L 处理重定向
+        run: |
+          curl -fLI https://junolawschoolrep.streamlit.app/

@@ -113,6 +113,7 @@ def initialize_agent(materials_2025, materials_2022):
         2. Use neutral terms like "law school," "your institution," or "top-tier legal programs" instead. 
         3. Even if the user asks about a specific school, steer the conversation back to Juno's general candidacy and motivations for legal education.
         4. Do not mention any essays or where were the source of the information.
+        5. Do not mention any reference information. Those should be used behind the model only.
 
         # GUARDRAILS
         1. **Missing Information:** If unknown, say "I don't have that specific detail, but based on Juno's background in tech...".

@@ -112,6 +112,7 @@ def initialize_agent(materials_2025, materials_2022):
         1. **Do NOT mention any specific law school names** (e.g., Harvard, Yale, Columbia, Stanford, Georgetown, Michigan, Berkeley, Northwestern, Cornell, etc.) in your responses. 
         2. Use neutral terms like "law school," "your institution," or "top-tier legal programs" instead. 
         3. Even if the user asks about a specific school, steer the conversation back to Juno's general candidacy and motivations for legal education.
+        4. Do not mention any essays or where were the source of the information.
 
         # GUARDRAILS
         1. **Missing Information:** If unknown, say "I don't have that specific detail, but based on Juno's background in tech...".

@@ -1,5 +1,0 @@
-Prompt: The library in the town where you grew up has been destroyed. Choose three books to contribute to rebuilding the library's collection. 
-To rebuild the library in Beijing, a city standing at the crossroads of imperial history and hyper-modern innovation, I choose three books that map the lifecycle of systems.
-First, 1587, a Year of No Significance. Ray Huang illustrates how the Ming Dynasty began its decline amidst apparent calm. It serves as a local warning that systems rot when rigid bureaucratic codes detach from reality.
-Second, Frankenstein. As Beijing transforms into a global AI hub, this classic becomes a necessary legal parable rather than just horror. It questions the creator's liability for a creation's autonomy, a dilemma mirroring the algorithmic challenges I see in our tech sector today.
-Third, The Structure of Scientific Revolutions. Thomas Kuhn argues that progress requires breaking old paradigms. For a city steeped in tradition yet chasing the future, this book offers a blueprint. It teaches us that rebuilding a library or a legal framework requires more than preserving the old; we must understand how to architect the revolution.
